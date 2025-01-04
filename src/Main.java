@@ -51,6 +51,9 @@ public class Main {
             contrasenya = input.nextLine();
             System.out.print("Verifica  la contrasnya: ");
             compcontrasenya = input.nextLine();
+            if (!contrasenya.equals(compcontrasenya)){
+                System.out.println("Les contrasenyes no coincideixen");
+            }
         } while (!contrasenya.equals(compcontrasenya)); // Verifica que l'usuari ha ficat la contrasenya que volia i no s'ha equivocat en una lletra o numero
 
         System.out.print("Ingresa el teu  Saldo Actual: ");
