@@ -18,7 +18,7 @@ public class Main {
         do {                            //bucle hasta que nos de una respuesta posible
             System.out.println("Vols inicia sessió (I) o registrarte (R)");
             compte = input.nextLine().toUpperCase();  //leemos input y lo pasamos a maysuculas
-        } while (compte.equals("R") || compte.equals("I"));
+        } while (!compte.equals("R") && !compte.equals("I"));
 
         if (compte.equals("R")) {   // Si le da A Regitrarse enviaremos un False
             return false;
@@ -49,7 +49,7 @@ public class Main {
         do {
             System.out.print("Ingresa una contrasenya: ");
             contrasenya = input.nextLine();
-            System.out.println("Verifica  la contrasnya: ");
+            System.out.print("Verifica  la contrasnya: ");
             compcontrasenya = input.nextLine();
         } while (!contrasenya.equals(compcontrasenya)); // Verifica que l'usuari ha ficat la contrasenya que volia i no s'ha equivocat en una lletra o numero
 
