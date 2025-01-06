@@ -3,17 +3,20 @@ import java.util.Scanner;
 public class Main {
     // crear registre de comptes per saber tamany de la llista
     int registres=0;
+    // variables per crar el compte
     static String compte;
    static String nom, cognom, compcontrasenya, contrasenya, username;
    static double saldoActual, mensualidad;
    static  String [][] matriz = new String[0][6]; // creem una matriu  aqui per que quedin totes les dades guardades
+    //variables per verificar el compte
+    static int index;
     private Scanner input =new Scanner(System.in);
     public  static void main(String[] args) {
         Main Banc = new Main();          //creacio instancia
         do {
 
             if (Banc.teCompte()) {     // comprueba si tiene cuenta o no y gracias el metodo teCompte y dependiendo del resultado hace una cosa u otra
-
+                Banc.verificarCredencials();
             } else {
                 Banc.crearCompte();
             }
@@ -88,10 +91,35 @@ public class Main {
     }
 
     public boolean verificarCredencials(){
-        System.out.println("Introdueix el teu username");
+        index=-1;  //donem valor inicial al index
+        System.out.print("Introdueix el teu username: ");
+        username=input.nextLine();
+        System.out.print("Introdueix la contrasenya: ");
+        compcontrasenya=input.nextLine();
+//bucle per verificar el usuari i la contraseña, amb aixo es podran repetir noms d'usuari
+        for (int i = 0; i < registres; i++) {
+
+            if (username.equals(matriz[i][3])) {
+
+                if (compcontrasenya.equals(matriz[i][2])) {
+                    index = i;  // si coincideix la contraseña amb el username de la mateixa fila li dodem un valor al index
+                    break;
+                }
+            }
+        }
+
+        if (index != -1) {  //segons el index trobat trobem una solucio
+            System.out.println("Usuari i contrasenya acceptades ");
+            return true;
+        } else {
+            System.out.println("Usuari o contrasenya incorrectes.");
+            System.out.println("Desintges registrarte ? (S/N)");
+            return false;
+
+        }
 
 
-        return false;
+
     }
 
     public void mostrarBenvinguda(){
