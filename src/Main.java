@@ -3,22 +3,26 @@ import java.util.Scanner;
 public class Main {
     // crear registre de comptes per saber tamany de la llista
     int registres=0;
+    static String compte;
     private Scanner input =new Scanner(System.in);
     public  static void main(String[] args) {
         Main Banc = new Main();          //creacio instancia
-        if (Banc.teCompte()){     // comprueba si tiene cuenta o no y gracias el metodo teCompte y dependiendo del resultado hace una cosa u otra
+        do {
 
-        } else {
-            Banc.crearCompte();
-        }
+            if (Banc.teCompte()) {     // comprueba si tiene cuenta o no y gracias el metodo teCompte y dependiendo del resultado hace una cosa u otra
+
+            } else {
+                Banc.crearCompte();
+            }
+        } while (!compte.equals("O"));
 
     }
     public boolean teCompte() {
-        String compte;
+
         do {                            //bucle hasta que nos de una respuesta posible
-            System.out.println("Vols inicia sessió (I) o registrarte (R)");
+            System.out.println("Vols inicia sessió (I) o registrarte (R) o sortir (O)");
             compte = input.nextLine().toUpperCase();  //leemos input y lo pasamos a maysuculas
-        } while (!compte.equals("R") && !compte.equals("I"));
+        } while (!compte.equals("R") && !compte.equals("I") && !compte.equals("O"));
 
         if (compte.equals("R")) {   // Si le da A Regitrarse enviaremos un False
             return false;
@@ -46,6 +50,7 @@ public class Main {
         System.out.print("Ingresi un Username: ");
         username = input.nextLine();
 
+
         do {
             System.out.print("Ingresa una contrasenya: ");
             contrasenya = input.nextLine();
@@ -62,6 +67,7 @@ public class Main {
         System.out.print("Ingresa la teva  Mensualitat: ");
         mensualidad = input.nextDouble();
         input.nextLine();
+
         //introduim les dades donades a la matriu
         matriz[registres - 1][0] = nom;
         matriz[registres - 1][1] = cognom;
@@ -72,7 +78,7 @@ public class Main {
 
 
 
-
+        System.out.println("Dades guardades correctament");
 
 
     }
