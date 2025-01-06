@@ -6,6 +6,7 @@ public class Main {
     static String compte;
    static String nom, cognom, compcontrasenya, contrasenya, username;
    static double saldoActual, mensualidad;
+   static  String [][] matriz = new String[0][6];
     private Scanner input =new Scanner(System.in);
     public  static void main(String[] args) {
         Main Banc = new Main();          //creacio instancia
@@ -40,7 +41,7 @@ public class Main {
 
         registres++;  //augmntem els registres per fer que la matriu s'agrandi cada cop que algui es registri
 
-        String [][] matriz = new String[registres][6];
+
 
         System.out.print("Ingresa el teu nom: ");
         nom = input.nextLine();
@@ -78,6 +79,13 @@ public class Main {
         matriz[registres - 1][5] = Double.toString(mensualidad);
 
         System.out.println("Dades guardades correctament");
+        for (int i = 0; i < registres; i++) {
+            for (int j = 0; j < 6; j++) {
+                System.out.println(matriz[i][j]);
+
+            }
+
+        }
     }
 
     public boolean verificarCredencials(){
