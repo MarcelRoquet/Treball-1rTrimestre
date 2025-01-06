@@ -4,6 +4,8 @@ public class Main {
     // crear registre de comptes per saber tamany de la llista
     int registres=0;
     static String compte;
+   static String nom, cognom, compcontrasenya, contrasenya, username;
+   static double saldoActual, mensualidad;
     private Scanner input =new Scanner(System.in);
     public  static void main(String[] args) {
         Main Banc = new Main();          //creacio instancia
@@ -35,8 +37,7 @@ public class Main {
     public void crearCompte() {
         // Crear variables necesaries
 
-        String nom, cognom, compcontrasenya, contrasenya, username;
-        double saldoActual, mensualidad;
+
         registres++;  //augmntem els registres per fer que la matriu s'agrandi cada cop que algui es registri
 
         String [][] matriz = new String[registres][6];
@@ -76,14 +77,13 @@ public class Main {
         matriz[registres - 1][4] = Double.toString(saldoActual); //serveix per psar els doubles a strings
         matriz[registres - 1][5] = Double.toString(mensualidad);
 
-
-
         System.out.println("Dades guardades correctament");
-
-
     }
 
     public boolean verificarCredencials(){
+        System.out.println("Introdueix el teu username");
+
+
         return false;
     }
 
