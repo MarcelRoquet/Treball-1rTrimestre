@@ -17,10 +17,9 @@ public class Main {
 
             if (Banc.teCompte()) {     // comprueba si tiene cuenta o no y gracias el metodo teCompte y dependiendo del resultado hace una cosa u otra
                if (Banc.verificarCredencials()){
+                   Banc.mostrarMenu();
 
-               } else{
-                   break;
-               }
+               } else continue;
 
             } else {
                 Banc.crearCompte();
@@ -91,11 +90,10 @@ public class Main {
             }
         } while (!contrasenya.equals(compcontrasenya)); // Verifica que l'usuari ha ficat la contrasenya que volia i no s'ha equivocat en una lletra o numero
 
-        System.out.print("Ingresa el teu  Saldo Actual: ");
-        saldoActual = input.nextDouble();
 
-        System.out.print("Ingresa la teva  Mensualitat: ");
-        mensualidad = input.nextDouble();
+        saldoActual = llegirDouble("Ingresa el teu  Saldo Actual: ");
+
+        mensualidad = llegirDouble("Ingresa la teva  Mensualitat: ");
         input.nextLine();
 
         //introduim les dades donades a la matriu
@@ -138,6 +136,28 @@ public class Main {
 
 
 
+    }
+    public static double llegirDouble(String missatge) {
+        Scanner llegir = new Scanner(System.in);
+
+        double x = 0;
+        boolean valorCorrecte = false;
+
+        do {
+            System.out.print(missatge);
+            valorCorrecte = llegir.hasNextDouble();
+
+            if (!valorCorrecte) {
+                System.out.println("ERROR: Valor incoherent.");
+                llegir.nextLine();
+            } else {
+                x = llegir.nextDouble();
+                llegir.nextLine();
+            }
+
+        } while (!valorCorrecte);
+
+        return x;
     }
 
     public void mostrarBenvinguda(){
