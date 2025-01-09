@@ -5,44 +5,45 @@ public class Main {
     int registres=0;
     // variables per crar el compte
     static String compte;
-   static String nom, cognom, compcontrasenya, contrasenya, username;
-   static double saldoActual, mensualidad;
-   static  String [][] matriz = new String[0][6]; // creem una matriu  aqui per que quedin totes les dades guardades
+    static String nom, cognom, compcontrasenya, contrasenya, username;
+    static double saldoActual, mensualidad;
+    static  String [][] matriz = new String[0][6]; // creem una matriu  aqui per que quedin totes les dades guardades
     //variables per verificar el compte
     static int index;
     private Scanner input =new Scanner(System.in);
     public  static void main(String[] args) {
         Main Banc = new Main();          //creacio instancia
         do {
-
-            if (Banc.teCompte()) {     // comprueba si tiene cuenta o no y gracias el metodo teCompte y dependiendo del resultado hace una cosa u otra
-               if (Banc.verificarCredencials()){
-                   Banc.mostrarMenu();
-
-               } else continue;
-
-            } else {
-                Banc.crearCompte();
+            Banc.teCompte();
+            switch (compte){
+                case "R":
+                    Banc.crearCompte();
+                    break;
+                case "I":
+                    if (!Banc.verificarCredencials()){
+                        break;
+                    }
+                    Banc.mostrarBenvinguda();
+                    Banc.mostrarMenu();
+                    break;
             }
+
         } while (!compte.equals("O"));
 
     }
-    public boolean teCompte() {
+    public String teCompte() {
         do {                            //bucle hasta que nos de una respuesta posible
             System.out.println("Vols inicia sessió (I) o registrarte (R) o sortir (O)");
-            compte = input.nextLine().toUpperCase();  //leemos input y lo pasamos a maysuculas
+            compte = input.nextLine().toUpperCase();      //leemos input y lo pasamos a maysuculas
         } while (!compte.equals("R") && !compte.equals("I") && !compte.equals("O"));
-
-        if (compte.equals("R")) {   // Si le da A Regitrarse enviaremos un False
-            return false;
-        } else {
-            return true;
+        if (compte.equals("O")){
+            System.out.println("Sortint...");
         }
+        return compte;
     }
 
     public void crearCompte() {
         // Crear variables necesaries
-
 
         registres++;  //augmntem els registres per fer que la matriu s'agrandi cada cop que algui es registri
 
@@ -62,6 +63,7 @@ public class Main {
 
         // verificar que el username posat no existeix
         boolean b = true;
+
         do {
             b=true;
 
@@ -133,8 +135,6 @@ public class Main {
 
         }
 
-
-
     }
     public static double llegirDouble(String missatge) {
         Scanner llegir = new Scanner(System.in);
@@ -160,7 +160,7 @@ public class Main {
     }
 
     public void mostrarBenvinguda(){
-
+        System.out.println(" Benvingut/da "+ matriz[index][0]);
     }
 
     public  void mostrarMenu() {
