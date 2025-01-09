@@ -27,7 +27,6 @@ public class Main {
                     Banc.mostrarMenu();
                     break;
             }
-
         } while (!compte.equals("O"));
 
     }
@@ -47,14 +46,14 @@ public class Main {
 
         registres++;  //augmntem els registres per fer que la matriu s'agrandi cada cop que algui es registri
 
-        String[][] nuevaMatriz = new String[registres][6];
+        String[][] nuevaMatriz = new String[registres][6];   // creem una segona matriu que sera una fila mes gran a la anterior per registrar una persona mes
         for (int i = 0; i < registres - 1; i++) {
             for (int j = 0; j < 6; j++) {
-                nuevaMatriz[i][j] = matriz[i][j];
+                nuevaMatriz[i][j] = matriz[i][j];  // aqui copiem la informacio de la matriz anterior a la nova per operar amb aquesta sense perdre informacio
             }
         }
         matriz = nuevaMatriz;
-
+// preguntem les dades que s'introduirant a la matriu
         System.out.print("Ingresa el teu nom: ");
         nom = input.nextLine();
 
@@ -62,23 +61,7 @@ public class Main {
         cognom = input.nextLine();
 
         // verificar que el username posat no existeix
-        boolean b = true;
-
-        do {
-            b=true;
-
-            System.out.print("Ingresi un Username: ");
-            username = input.nextLine();
-            for (int i = 0; i < registres-1; i++) {
-                if (username.equals(nuevaMatriz[i][3])) {
-                    System.out.println("Username no dispobible");
-                    b = false;   // si el username es repeteix convertim el booleano en falso
-
-                    break;
-                }
-            }
-        } while (!b);
-
+         verificarUsername();
 
 
         do {
@@ -107,7 +90,24 @@ public class Main {
 
         System.out.println("Dades guardades correctament");
     }
+public void verificarUsername(){
+    boolean b;
+    do {
+        b=true;
 
+        System.out.print("Ingresi un Username: ");
+        username = input.nextLine();
+        for (int i = 0; i < registres-1; i++) {
+            if (username.equals(matriz[i][3])) {
+                System.out.println("Username no dispobible");
+                b = false;   // si el username es repeteix convertim el booleano en falso
+
+                break;
+            }
+        }
+    } while (!b);
+
+}
     public boolean verificarCredencials(){
         index=-1;  //donem valor inicial al index
         System.out.print("Introdueix el teu username: ");
