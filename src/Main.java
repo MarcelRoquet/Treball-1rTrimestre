@@ -184,6 +184,7 @@ public void verificarUsername(){
                     ingressarDiners();
                     break;
                 case 3:
+                    retirarDiners();
                     break;
                 case 4:
                     break;
@@ -253,6 +254,19 @@ public void verificarUsername(){
     }
 
     public void retirarDiners(){
+        System.out.println("Quina quanititat vols retirar? ");
+        System.out.print("Diners: ");
+        double Diners;
+        double saldoActual = Double.parseDouble(matriz[index][4]);
+        do {
+             Diners = input.nextDouble();
+        } while (Diners>saldoActual);
+
+            saldoActual -= Diners;
+
+        matriz[index][4] = Double.toString(saldoActual);
+
+        System.out.println("Acceptat, ara el teu saldo es de: "+matriz[index][4]);
 
     }
 
