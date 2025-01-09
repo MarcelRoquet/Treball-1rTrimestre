@@ -168,15 +168,17 @@ public void verificarUsername(){
 
         do {
             opcioMenu = llegirEnter("Les opcions del menú són:" +
-                    "\n1- Dades personals " +
-                    "\n2-Ingresar diners " +
-                    "\n3-Retirar diners " +
-                    "\n4- Divisió" +
-                    "\n5- Meta d'estalvi" +
-                    "\n" + "6- Tanca sessió", 1, 6);
+                    "\n1- Dades personals" +
+                    "\n2- Ingresar diners" +
+                    "\n3- Retirar diners" +
+                    "\n4- Planificació " +
+                    "\n5- Modificar dades personals" +
+                    "\n6- Tanca sessió", 1, 6);
+
 
             switch (opcioMenu) {
                 case 1:
+                    dadesPersonals();
                     break;
                 case 2:
                     break;
@@ -195,7 +197,6 @@ public void verificarUsername(){
 
         } while (opcioMenu != 6);
     }
-
 
     private static int llegirEnter(String missatge, int min, int max) {
         Scanner llegir = new Scanner(System.in);
@@ -223,9 +224,26 @@ public void verificarUsername(){
         return x;
     }
 
-    public void dadesPersonals(){
-
+    public static void dadesPersonals(){
+        System.out.print("Nom: ");
+        System.out.println(matriz[index][0]);
+        System.out.print("Cognom: ");
+        System.out.println(matriz[index][1]);
+        System.out.print("Username: ");
+        System.out.println(matriz[index][3]);
+        System.out.print("Saldo actual: ");
+        System.out.println(matriz[index][4]);
+        System.out.print("Mensualitat: ");
+        System.out.println(matriz[index][5]);
     }
+
+    /**  matriz[registres - 1][0] = nom;
+     matriz[registres - 1][1] = cognom;
+     matriz[registres - 1][2] = contrasenya;
+     matriz[registres - 1][3] = username;
+     matriz[registres - 1][4] = Double.toString(saldoActual); //serveix per psar els doubles a strings
+     matriz[registres - 1][5] = Double.toString(mensualidad);
+     **/
 
     public void ingressarDiners(){
 
