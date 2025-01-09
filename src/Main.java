@@ -16,7 +16,12 @@ public class Main {
         do {
 
             if (Banc.teCompte()) {     // comprueba si tiene cuenta o no y gracias el metodo teCompte y dependiendo del resultado hace una cosa u otra
-                Banc.verificarCredencials();
+               if (Banc.verificarCredencials()){
+
+               } else{
+                   break;
+               }
+
             } else {
                 Banc.crearCompte();
             }
@@ -36,6 +41,7 @@ public class Main {
             return true;
         }
     }
+
 
 
     public void crearCompte() {
@@ -58,8 +64,21 @@ public class Main {
         System.out.print("Ingresa el teu cognom: ");
         cognom = input.nextLine();
 
-        System.out.print("Ingresi un Username: ");
-        username = input.nextLine();
+        // verificar que el username posat no existeix
+        boolean b = true;
+        do {
+            b=true;
+            System.out.print("Ingresi un Username: ");
+            username = input.nextLine();
+            for (int i = 0; i < registres-1; i++) {
+                if (username.equals(nuevaMatriz[i][3])) {
+                    b = false;   // si el username es repeteix convertim el booleano en falso
+
+                    break;
+                }
+            }
+        } while (!b);
+
 
 
         do {
@@ -113,7 +132,6 @@ public class Main {
             return true;
         } else {
             System.out.println("Usuari o contrasenya incorrectes.");
-            System.out.println("Desintges registrarte ? (S/N)");
             return false;
 
         }
