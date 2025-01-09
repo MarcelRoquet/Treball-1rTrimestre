@@ -164,8 +164,42 @@ public class Main {
 
     }
 
-    public void mostrarMenu(){
+    public  void mostrarMenu(){
+        int opcioMenu = 0;
+        opcioMenu = llegirEnter("Les opcions del menú són:" +
+                "\n1- Dades personals " +
+                "\n2-Ingresar diners " +
+                "\n3-Retirar diners " +
+                "\n4- Divisió" +
+                "\n5- Meta d'estalvi" +
+                "\n" + "6- Tanca sessió", 1, 6);
 
+    }
+
+    private static int llegirEnter(String missatge, int min, int max) {
+        Scanner llegir = new Scanner(System.in);
+
+        int x = 0;
+        boolean valorCorrecte = false;
+
+        do {
+            System.out.println(missatge);
+            valorCorrecte = llegir.hasNextInt();
+
+            if (!valorCorrecte) {
+                System.out.println("ERROR: Valor no enter.");
+                llegir.nextLine();
+            } else {                      // Tinc un enter
+                x = llegir.nextInt();
+                llegir.nextLine();
+                if (x < min || x > max) {
+                    System.out.println("Opció no valida");
+                    valorCorrecte = false;
+                }
+            }
+        } while (!valorCorrecte);
+
+        return x;
     }
 
     public void dadesPersonals(){
