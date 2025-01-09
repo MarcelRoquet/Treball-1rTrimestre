@@ -28,7 +28,6 @@ public class Main {
 
     }
     public boolean teCompte() {
-
         do {                            //bucle hasta que nos de una respuesta posible
             System.out.println("Vols inicia sessió (I) o registrarte (R) o sortir (O)");
             compte = input.nextLine().toUpperCase();  //leemos input y lo pasamos a maysuculas
@@ -40,8 +39,6 @@ public class Main {
             return true;
         }
     }
-
-
 
     public void crearCompte() {
         // Crear variables necesaries
@@ -180,11 +177,17 @@ public class Main {
 
             switch (opcioMenu) {
                 case 1:
+                    break;
                 case 2:
+                    break;
                 case 3:
+                    break;
                 case 4:
+                    break;
                 case 5:
+                    break;
                 case 6:
+                    break;
                 default:
                     System.out.println("Opció no valida ");
                     break;
