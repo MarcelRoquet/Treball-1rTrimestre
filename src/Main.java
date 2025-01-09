@@ -67,10 +67,12 @@ public class Main {
         boolean b = true;
         do {
             b=true;
+
             System.out.print("Ingresi un Username: ");
             username = input.nextLine();
             for (int i = 0; i < registres-1; i++) {
                 if (username.equals(nuevaMatriz[i][3])) {
+                    System.out.println("Username no dispobible");
                     b = false;   // si el username es repeteix convertim el booleano en falso
 
                     break;
@@ -94,7 +96,7 @@ public class Main {
         saldoActual = llegirDouble("Ingresa el teu  Saldo Actual: ");
 
         mensualidad = llegirDouble("Ingresa la teva  Mensualitat: ");
-        input.nextLine();
+
 
         //introduim les dades donades a la matriu
         matriz[registres - 1][0] = nom;
