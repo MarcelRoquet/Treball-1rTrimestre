@@ -181,6 +181,7 @@ public void verificarUsername(){
                     dadesPersonals();
                     break;
                 case 2:
+                    ingressarDiners();
                     break;
                 case 3:
                     break;
@@ -224,7 +225,7 @@ public void verificarUsername(){
         return x;
     }
 
-    public static void dadesPersonals(){
+    public void dadesPersonals(){
         System.out.print("Nom: ");
         System.out.println(matriz[index][0]);
         System.out.print("Cognom: ");
@@ -236,17 +237,19 @@ public void verificarUsername(){
         System.out.print("Mensualitat: ");
         System.out.println(matriz[index][5]);
     }
-
-    /**  matriz[registres - 1][0] = nom;
-     matriz[registres - 1][1] = cognom;
-     matriz[registres - 1][2] = contrasenya;
-     matriz[registres - 1][3] = username;
-     matriz[registres - 1][4] = Double.toString(saldoActual); //serveix per psar els doubles a strings
-     matriz[registres - 1][5] = Double.toString(mensualidad);
-     **/
-
     public void ingressarDiners(){
+        System.out.println("Quina quanititat vols ingresar? ");
+        System.out.print("Diners: ");
 
+        double Diners = input.nextDouble();
+
+        double saldoActual = Double.parseDouble(matriz[index][4]);
+
+        saldoActual += Diners;
+
+        matriz[index][4] = Double.toString(saldoActual);
+
+        System.out.println("Acceptat, ara el teu saldo es de: "+matriz[index][4]);
     }
 
     public void retirarDiners(){
