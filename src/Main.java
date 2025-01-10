@@ -273,6 +273,7 @@ public void verificarUsername(){
     public void PlanificamentDiners(){
         int teclat =0;
         boolean dinersEstalviar=false;
+        int llegirDiners=0;
 
         teclat = llegirEnter("Les opcions del menú són:" +
                 "\n1- Meta d'estalvi" +
@@ -284,13 +285,17 @@ public void verificarUsername(){
                 case 1:
                     System.out.println("Quants diners vols estalviar?:");
                     System.out.println("Diners:");
-                    int llegirDiners = input.nextInt();
+                    llegirDiners = input.nextInt();
                     dinersEstalviar=true;
                 case 2:
                     if (!dinersEstalviar) {
                         System.out.println("Primer ingresa els diners que vols estalviar");
-                    } else{
-                        System.out.println("");
+                    } else {
+                        if (llegirDiners < 1000) {
+                            
+                        } else if (llegirDiners < 5000 && llegirDiners > 1000) {
+
+                        } else if (llegirDiners > 5000) {}
                     }
                 break;
             }
