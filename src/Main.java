@@ -187,6 +187,7 @@ public void verificarUsername(){
                     retirarDiners();
                     break;
                 case 4:
+                    planificamentDiners();
                     break;
                 case 5:
                     break;
@@ -270,7 +271,7 @@ public void verificarUsername(){
 
     }
 
-    public void PlanificamentDiners(){
+    public void planificamentDiners(){
         int teclat =0;
         boolean dinersEstalviar=false;
         int llegirDiners=0;
@@ -292,7 +293,7 @@ public void verificarUsername(){
                         System.out.println("Primer ingresa els diners que vols estalviar");
                     } else {
                         if (llegirDiners < 1000) {
-                            
+                          
                         } else if (llegirDiners < 5000 && llegirDiners > 1000) {
 
                         } else if (llegirDiners > 5000) {}
