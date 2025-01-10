@@ -85,8 +85,14 @@ public class Main {
     public static String password() {
         Scanner input = new Scanner(System.in);
         do {
-            System.out.print("Ingresa una contrasenya: ");
-            contrasenya = input.nextLine();
+            do {
+                System.out.print("Ingresa una contrasenya: ");
+                contrasenya = input.nextLine();
+                if (contrasenya.length()<=5){
+                    System.out.println("La contrasenya ha de tenir minim 5 caràcters");
+                }
+            } while (contrasenya.length()<=5);
+
             System.out.print("Verifica  la contrasnya: ");
             compcontrasenya = input.nextLine();
             if (!contrasenya.equals(compcontrasenya)){
