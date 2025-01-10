@@ -19,12 +19,13 @@ public class Main {
                 case "R":
                     Banc.crearCompte();
                     break;
-                case "I":
+                 case "I":
                     if (!Banc.verificarCredencials()){
                         break;
+                    } else {
+                        Banc.mostrarBenvinguda();
+                        Banc.mostrarMenu();
                     }
-                    Banc.mostrarBenvinguda();
-                    Banc.mostrarMenu();
                     break;
             }
         } while (!compte.equals("O"));
@@ -229,9 +230,20 @@ public void verificarUsername(){
                 break;
             case 4:
                 modcontraseña();
+                break;
             case 5:
+                modmansualitat();
 
         }
+    }
+
+    private void modmansualitat() {
+         double newmensualitat =0;
+        System.out.println("La teva mensualitat asctual es : "+  matriz[index][5]);
+        System.out.print("Escriu la teva nova mensualitat : ");
+        newmensualitat=input.nextDouble();
+        matriz[index][5] = String.valueOf(newmensualitat);
+        System.out.println("Dades guardades correctament, "+ matriz[index][5]);
     }
 
     private void modcontraseña() {
