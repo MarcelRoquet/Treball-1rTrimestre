@@ -297,14 +297,15 @@ public void verificarUsername(){
                         System.out.println("Primer ingresa els diners que vols estalviar");
                     } else {
                         if (llegirDiners < 1000) {
+                            System.out.println("La teva meta d'estalvi es de: "+ llegirDiners);
                             System.out.println("Et recomanem seguir la regla 50/30/20");
-                            System.out.println("\n 50% per necessitats basiques"+
-                                               "\n 30% per altres"+
-                                               "\n 20% per estalvis");
+                            System.out.println("50% per necessitats basiques");
+                            System.out.println("30% per altres");
+                            System.out.println("20% per estalvis");
                             System.out.println("Vols seguir aquest pla? (s/n)");
                             char pla1000 = input.next().charAt(0);
                             if (pla1000 == 's') {
-
+                                
                             }else if (pla1000 == 'n') {
 
                             }
