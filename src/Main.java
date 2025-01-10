@@ -121,7 +121,7 @@ public void verificarUsername(){
         username=input.nextLine();
         System.out.print("Introdueix la contrasenya: ");
         compcontrasenya=input.nextLine();
-//bucle per verificar el usuari i la contraseña, amb aixo es podran repetir noms d'usuari
+//bucle per verificar el usuari i la contraseña, amb aixo es podran repetir noms d'usuari (ya no)
         for (int i = 0; i < registres; i++) {
 
             if (username.equals(matriz[i][3])) {
@@ -174,7 +174,7 @@ public void verificarUsername(){
         int opcioMenu = 0;
 
         do {
-            opcioMenu = llegirEnter("Les opcions del menú són:" +
+            opcioMenu = llegirEnter("Les opcions del menú són principal :" +
                     "\n1- Dades personals" +
                     "\n2- Ingresar diners" +
                     "\n3- Retirar diners" +
@@ -237,19 +237,26 @@ public void verificarUsername(){
     private void modcontraseña() {
         String new_contraseña = null;
         String continuar = "c";
+        boolean acceptada = false;
         // bucle hasta que ponga bien la contraseña dee comprovacion o quiera salir
         do {
-         System.out.println("Per modificar la contrasnya has de introduir-la primer: ");
+         System.out.print("Per modificar la contrasnya has de introduir-la primer: ");
          new_contraseña=input.nextLine();
 
          if (!new_contraseña.equals(matriz[index][2])){
              System.out.println("Contrasenya incorrecte");
              System.out.print("Presiona 'f' per sortir o qualsevol tecla per continuar: ");
               continuar = input.nextLine().toLowerCase();
+         } else {
+             acceptada = true;
          }
         } while (!new_contraseña.equals(matriz[index][2]) && !continuar.equals("f"));
+        if (acceptada){
+            System.out.println("Contrasenya acceptada ");
             password();
             matriz[index][2]=contrasenya;
+            System.out.println("Nova contrasenya desada");
+        }
 
     }
 
