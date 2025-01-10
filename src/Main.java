@@ -235,6 +235,21 @@ public void verificarUsername(){
     }
 
     private void modcontraseña() {
+        String new_contraseña = null;
+        String continuar = "c";
+        // bucle hasta que ponga bien la contraseña dee comprovacion o quiera salir
+        do {
+         System.out.println("Per modificar la contrasnya has de introduir-la primer: ");
+         new_contraseña=input.nextLine();
+
+         if (!new_contraseña.equals(matriz[index][2])){
+             System.out.println("Contrasenya incorrecte");
+             System.out.print("Presiona 'f' per sortir o qualsevol tecla per continuar: ");
+              continuar = input.nextLine().toLowerCase();
+         }
+        } while (!new_contraseña.equals(matriz[index][2]) && !continuar.equals("f"));
+            password();
+            matriz[index][2]=contrasenya;
 
     }
 
