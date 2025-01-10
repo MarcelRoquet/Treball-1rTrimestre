@@ -218,7 +218,8 @@ public void verificarUsername(){
                 modcognom();
                 break;
             case 3:
-
+                modusername();
+                break;
             case 4:
 
             case 5:
@@ -226,12 +227,21 @@ public void verificarUsername(){
         }
     }
 
+    private void modusername() {
+        String username_actual = null;
+        System.out.println("El tenu cognom actual es: "+  matriz[index][2]);
+        System.out.print("Escriu el teu nou cognom: ");
+        username_actual=input.nextLine();
+        matriz[index][2] = username_actual;
+        System.out.println("Dades guardades correctament, "+ matriz[index][2]);
+    }
+
     private void modcognom() {
         String cognom_actual = null;
         System.out.println("El tenu cognom actual es: "+  matriz[index][1]);
         System.out.print("Escriu el teu nou cognom: ");
         cognom_actual=input.nextLine();
-        matriz[index][0] = cognom_actual;
+        matriz[index][1] = cognom_actual;
         System.out.println("Dades guardades correctament, "+ matriz[index][1]);
     }
 
