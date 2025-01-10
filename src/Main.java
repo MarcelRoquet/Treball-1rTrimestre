@@ -203,7 +203,6 @@ public void verificarUsername(){
 
     private void modificardades() {
         int moddades = 0;
-        System.out.println("");
         moddades= llegirEnter("Que vols modificar ? " +
                 "\n1- Nom" +
                 "\n2- Cognom" +
@@ -211,6 +210,28 @@ public void verificarUsername(){
                 "\n4- Contrasenya  " +
                 "\n5- Mensualitat "
                     , 1, 5);
+        switch (moddades){
+            case 1:
+                modnom();
+                break;
+            case 2:
+
+            case 3:
+
+            case 4:
+
+            case 5:
+
+        }
+    }
+
+    private void modnom() {
+        String nom_actual = null;
+        System.out.println("El tenu nom actual es: "+  matriz[index][0]);
+        System.out.print("Escriu el teu nou nom: ");
+        nom_actual=input.nextLine();
+        matriz[index][0] = nom_actual;
+        System.out.println("Dades guardades correctament, "+ matriz[index][0]);
     }
 
     private static int llegirEnter(String missatge, int min, int max) {
