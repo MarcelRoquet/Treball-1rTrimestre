@@ -275,7 +275,8 @@ public void verificarUsername(){
         int teclat =0;
         boolean sortir =false;
         boolean dinersEstalviar=false;
-        int llegirDiners=0;
+        int metaEstalvi =0;
+        int tantEstalviar = 0;
 
         do{
         teclat = llegirEnter("Les opcions del menú són:" +
@@ -288,36 +289,36 @@ public void verificarUsername(){
                 case 1:
                     System.out.println("Quants diners vols estalviar?:");
                     System.out.println("Diners:");
-                    llegirDiners = input.nextInt();
+                    metaEstalvi = input.nextInt();
                     dinersEstalviar=true;
-                    System.out.println("Has configurat una meta d'estalvi de " + llegirDiners);
+                    System.out.println("Has configurat una meta d'estalvi de " + metaEstalvi);
                     break;
                 case 2:
                     if (!dinersEstalviar) {
                         System.out.println("Primer ingresa els diners que vols estalviar");
                     } else {
-                        if (llegirDiners < 1000) {
-                            System.out.println("La teva meta d'estalvi es de: "+ llegirDiners);
-                            System.out.println("Et recomanem seguir la regla 50/30/20");
-                            System.out.println("50% per necessitats basiques");
-                            System.out.println("30% per altres");
-                            System.out.println("20% per estalvis");
-                            System.out.println("Vols seguir aquest pla? (s/n)");
-                            String pla1000 = input.nextLine();
-                            if (pla1000.equalsIgnoreCase("s")) {
+                        if (metaEstalvi < 1000) {
+                            System.out.println("La teva meta d'estalvi es de: "+ metaEstalvi);
+                            System.out.println("Quin tant % del teu sou vols estalviar:");
+                            tantEstalviar=input.nextInt();
+                            double estalviPerMes = calcularEstalviMensual(tantEstalviar);
+                            System.out.println("Estalviaràs " + estalviPerMes + " per mes");
 
-                            }else if (pla1000.equalsIgnoreCase("n")) {
+                        break;
+                        } else if (metaEstalvi < 5000 && metaEstalvi > 1000) {
+                            System.out.println("La teva meta d'estalvi es de: "+ metaEstalvi);
 
-                            } else {
-                                System.out.println("ERROR: El caràcter no és vàlid");
-                            }
-                        } else if (llegirDiners < 5000 && llegirDiners > 1000) {
+                        } else if (metaEstalvi > 5000) {
+                            System.out.println("La teva meta d'estalvi es de: "+ metaEstalvi);
 
-                        } else if (llegirDiners > 5000) {}
+                        }
                     }
                 break;
             }
         }while(!sortir);
 
+    }
+    public static double calcularEstalviMensual (int tantEstalviar){
+        return (mensualidad*tantEstalviar)/100.0;
     }
 }
