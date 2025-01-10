@@ -303,8 +303,8 @@ public void verificarUsername(){
                             tantEstalviar=input.nextInt();
                             double estalviPerMes = calcularEstalviMensual(tantEstalviar);
                             System.out.println("Estalviaràs " + estalviPerMes + " per mes");
+                            demanarGuardar();
 
-                        break;
                         } else if (metaEstalvi < 5000 && metaEstalvi > 1000) {
                             System.out.println("La teva meta d'estalvi es de: "+ metaEstalvi);
 
@@ -312,6 +312,7 @@ public void verificarUsername(){
                             System.out.println("La teva meta d'estalvi es de: "+ metaEstalvi);
 
                         }
+
                     }
                 break;
             }
@@ -320,5 +321,16 @@ public void verificarUsername(){
     }
     public static double calcularEstalviMensual (int tantEstalviar){
         return (mensualidad*tantEstalviar)/100.0;
+    }
+    public void demanarGuardar(){
+        System.out.println("Vols guardar aquest pla d'estalvi? (S/N)");
+        String guardar = input.next();
+        if (guardar.equalsIgnoreCase("s")) {
+            System.out.println("Guardant....");
+            System.out.println("El teu pla d'estalvi ha estat guardat correctament");
+        } else{
+            System.out.println("El pla d'estalvi no s'ha guardat");
+            return;
+        }
     }
 }
