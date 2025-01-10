@@ -202,7 +202,6 @@ public void verificarUsername(){
 
     private static int llegirEnter(String missatge, int min, int max) {
         Scanner llegir = new Scanner(System.in);
-
         int x = 0;
         boolean valorCorrecte = false;
 
@@ -254,11 +253,11 @@ public void verificarUsername(){
     }
 
     public void retirarDiners(){
+        double saldoActual = Double.parseDouble(matriz[index][4]);
+        double Diners;
+        do {
         System.out.println("Quina quanititat vols retirar? ");
         System.out.print("Diners: ");
-        double Diners;
-        double saldoActual = Double.parseDouble(matriz[index][4]);
-        do {
              Diners = input.nextDouble();
         } while (Diners>saldoActual);
 
