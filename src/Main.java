@@ -189,6 +189,7 @@ public void verificarUsername(){
                 case 4:
                     break;
                 case 5:
+                    modificardades();
                     break;
                 case 6:
                     break;
@@ -198,6 +199,18 @@ public void verificarUsername(){
             }
 
         } while (opcioMenu != 6);
+    }
+
+    private void modificardades() {
+        int moddades = 0;
+        System.out.println("");
+        moddades= llegirEnter("Que vols modificar ? " +
+                "\n1- Nom" +
+                "\n2- Cognom" +
+                "\n3- Username " +
+                "\n4- Contrasenya  " +
+                "\n5- Mensualitat "
+                    , 1, 5);
     }
 
     private static int llegirEnter(String missatge, int min, int max) {
