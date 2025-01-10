@@ -273,21 +273,25 @@ public void verificarUsername(){
 
     public void planificamentDiners(){
         int teclat =0;
+        boolean sortir =false;
         boolean dinersEstalviar=false;
         int llegirDiners=0;
 
+        do{
         teclat = llegirEnter("Les opcions del menú són:" +
-                "\n1- Meta d'estalvi" +
+                "\n1- Establir una meta d'estalvi" +
                 "\n2- Pla d'estalviament" +
                 "\n3- Tanca sessió", 1, 3);
 
-        do{
+
             switch (teclat) {
                 case 1:
                     System.out.println("Quants diners vols estalviar?:");
                     System.out.println("Diners:");
                     llegirDiners = input.nextInt();
                     dinersEstalviar=true;
+                    System.out.println("Has configurat una meta d'estalvi de " + llegirDiners);
+                    break;
                 case 2:
                     if (!dinersEstalviar) {
                         System.out.println("Primer ingresa els diners que vols estalviar");
@@ -299,8 +303,10 @@ public void verificarUsername(){
                                                "\n 20% per estalvis");
                             System.out.println("Vols seguir aquest pla? (s/n)");
                             char pla1000 = input.next().charAt(0);
-                            while (pla1000=='s'){
-                                
+                            if (pla1000 == 's') {
+
+                            }else if (pla1000 == 'n') {
+
                             }
                         } else if (llegirDiners < 5000 && llegirDiners > 1000) {
 
@@ -308,7 +314,7 @@ public void verificarUsername(){
                     }
                 break;
             }
-        }while(teclat != 3);
+        }while(!sortir);
 
     }
 }
