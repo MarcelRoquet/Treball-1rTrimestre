@@ -272,6 +272,8 @@ public void verificarUsername(){
 
     public void PlanificamentDiners(){
         int teclat =0;
+        boolean dinersEstalviar=false;
+
         System.out.println("1- Meta d'estalvi");
         System.out.println("2- Pla d'estalviament");
         System.out.println("3- Tornar enrere");
@@ -282,6 +284,14 @@ public void verificarUsername(){
                     System.out.println("Quants diners vols estalviar?:");
                     System.out.println("Diners:");
                     int llegirDiners = input.nextInt();
+                    dinersEstalviar=true;
+                case 2:
+                    if (!dinersEstalviar) {
+                        System.out.println("Primer ingresa els diners que vols estalviar");
+                    } else{
+
+                    }
+                break;
             }
         }while(teclat != 3);
 
