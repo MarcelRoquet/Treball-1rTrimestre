@@ -63,17 +63,8 @@ public class Main {
         // verificar que el username posat no existeix
          verificarUsername();
 
-
-        do {
-            System.out.print("Ingresa una contrasenya: ");
-            contrasenya = input.nextLine();
-            System.out.print("Verifica  la contrasnya: ");
-            compcontrasenya = input.nextLine();
-            if (!contrasenya.equals(compcontrasenya)){
-                System.out.println("Les contrasenyes no coincideixen");
-            }
-        } while (!contrasenya.equals(compcontrasenya)); // Verifica que l'usuari ha ficat la contrasenya que volia i no s'ha equivocat en una lletra o numero
-
+       // preguntar contraseña
+         password();
 
         saldoActual = llegirDouble("Ingresa el teu  Saldo Actual: ");
 
@@ -90,6 +81,22 @@ public class Main {
 
         System.out.println("Dades guardades correctament");
     }
+    public static String password() {
+        Scanner input = new Scanner(System.in);
+        do {
+            System.out.print("Ingresa una contrasenya: ");
+            contrasenya = input.nextLine();
+            System.out.print("Verifica  la contrasnya: ");
+            compcontrasenya = input.nextLine();
+            if (!contrasenya.equals(compcontrasenya)){
+                System.out.println("Les contrasenyes no coincideixen");
+            }
+        } while (!contrasenya.equals(compcontrasenya)); // Verifica que l'usuari ha ficat la contrasenya que volia i no s'ha equivocat en una lletra o numero
+
+        return contrasenya;
+    }
+
+
 public void verificarUsername(){
     boolean b;
     do {
@@ -221,10 +228,14 @@ public void verificarUsername(){
                 modusername();
                 break;
             case 4:
-
+                modcontraseña();
             case 5:
 
         }
+    }
+
+    private void modcontraseña() {
+
     }
 
     private void modusername() {
