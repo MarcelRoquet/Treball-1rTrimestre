@@ -270,7 +270,12 @@ public void verificarUsername(){
 
     }
 
-    public void mostrarMenu2(){
+    public void PlanificamentDiners(){
+        int teclat =0;
+        System.out.println("1- Meta d'estalvi");
+        System.out.println("2- Pla d'estalviament");
+        System.out.println("3- Tornar enrere");
+
 
     }
 }
