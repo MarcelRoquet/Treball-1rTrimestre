@@ -293,7 +293,12 @@ public void verificarUsername(){
                         System.out.println("Primer ingresa els diners que vols estalviar");
                     } else {
                         if (llegirDiners < 1000) {
-                          
+                            System.out.println("Et recomanem seguir la regla 50/30/20");
+                            System.out.println("\n 50% per necessitats basiques"+
+                                               "\n 30% per altres"+
+                                               "\n 20% per estalvis");
+                            System.out.println("Vols seguir aquest pla? (s/n)");
+
                         } else if (llegirDiners < 5000 && llegirDiners > 1000) {
 
                         } else if (llegirDiners > 5000) {}
