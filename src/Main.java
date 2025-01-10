@@ -276,6 +276,14 @@ public void verificarUsername(){
         System.out.println("2- Pla d'estalviament");
         System.out.println("3- Tornar enrere");
 
+        do{
+            switch (teclat) {
+                case 1:
+                    System.out.println("Quants diners vols estalviar?:");
+                    System.out.println("Diners:");
+                    int llegirDiners = input.nextInt();
+            }
+        }while(teclat != 3);
 
     }
 }
