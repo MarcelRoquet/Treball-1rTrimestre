@@ -303,11 +303,13 @@ public void verificarUsername(){
                             System.out.println("30% per altres");
                             System.out.println("20% per estalvis");
                             System.out.println("Vols seguir aquest pla? (s/n)");
-                            char pla1000 = input.next().charAt(0);
-                            if (pla1000 == 's') {
-                                
-                            }else if (pla1000 == 'n') {
+                            String pla1000 = input.nextLine();
+                            if (pla1000.equalsIgnoreCase("s")) {
 
+                            }else if (pla1000.equalsIgnoreCase("n")) {
+
+                            } else {
+                                System.out.println("ERROR: El caràcter no és vàlid");
                             }
                         } else if (llegirDiners < 5000 && llegirDiners > 1000) {
 
