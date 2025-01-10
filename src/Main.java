@@ -274,9 +274,10 @@ public void verificarUsername(){
         int teclat =0;
         boolean dinersEstalviar=false;
 
-        System.out.println("1- Meta d'estalvi");
-        System.out.println("2- Pla d'estalviament");
-        System.out.println("3- Tornar enrere");
+        teclat = llegirEnter("Les opcions del menú són:" +
+                "\n1- Meta d'estalvi" +
+                "\n2- Pla d'estalviament" +
+                "\n3- Tanca sessió", 1, 3);
 
         do{
             switch (teclat) {
@@ -289,7 +290,7 @@ public void verificarUsername(){
                     if (!dinersEstalviar) {
                         System.out.println("Primer ingresa els diners que vols estalviar");
                     } else{
-
+                        System.out.println("");
                     }
                 break;
             }
