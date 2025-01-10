@@ -298,7 +298,10 @@ public void verificarUsername(){
                                                "\n 30% per altres"+
                                                "\n 20% per estalvis");
                             System.out.println("Vols seguir aquest pla? (s/n)");
-
+                            char pla1000 = input.next().charAt(0);
+                            while (pla1000=='s'){
+                                
+                            }
                         } else if (llegirDiners < 5000 && llegirDiners > 1000) {
 
                         } else if (llegirDiners > 5000) {}
