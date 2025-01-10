@@ -88,20 +88,26 @@ public class Main {
             do {
                 System.out.print("Ingresa una contrasenya: ");
                 contrasenya = input.nextLine();
-                if (contrasenya.length()<=5){
-                    System.out.println("La contrasenya ha de tenir minim 5 caràcters");
+                if (contrasenya.length() <= 3) {
+                    System.out.println("La contrasenya ha de tenir minim 3 xifres");
                 }
-            } while (contrasenya.length()<=5);
+                if (!contrasenya.matches(".*[A-Z].*")) {
+                        System.out.println("La contrasenya ha de tenir almenys una majúscula");
+                    }
+                if (!contrasenya.matches(".*[a-z].*")) {
+                        System.out.println("La contrasenya ha de tenir almenys una minuscula");
+                    }
+            } while (contrasenya.length() <= 3 || !contrasenya.matches(".*[A-Z].*") || !contrasenya.matches(".*[a-z].*") ) ;
 
-            System.out.print("Verifica  la contrasnya: ");
-            compcontrasenya = input.nextLine();
-            if (!contrasenya.equals(compcontrasenya)){
-                System.out.println("Les contrasenyes no coincideixen");
-            }
-        } while (!contrasenya.equals(compcontrasenya)); // Verifica que l'usuari ha ficat la contrasenya que volia i no s'ha equivocat en una lletra o numero
+                System.out.print("Verifica  la contrasnya: ");
+                compcontrasenya = input.nextLine();
+                if (!contrasenya.equals(compcontrasenya)) {
+                    System.out.println("Les contrasenyes no coincideixen");
+                }
+            } while (!contrasenya.equals(compcontrasenya)); // Verifica que l'usuari ha ficat la contrasenya que volia i no s'ha equivocat en una lletra o numero
 
-        return contrasenya;
-    }
+            return contrasenya;
+        }
 
 
 public void verificarUsername(){
