@@ -9,6 +9,7 @@ public class Main {
     static double saldoActual, mensualidad;
     static  String [][] matriz = new String[0][6]; // creem una matriu  aqui per que quedin totes les dades guardades
     //variables per verificar el compte
+    static Double[][] estalvi = new Double[0][3];
     static int index;
     private Scanner input =new Scanner(System.in);
     public  static void main(String[] args) {
@@ -48,12 +49,18 @@ public class Main {
         registres++;  //augmntem els registres per fer que la matriu s'agrandi cada cop que algui es registri
 
         String[][] nuevaMatriz = new String[registres][6];   // creem una segona matriu que sera una fila mes gran a la anterior per registrar una persona mes
+        Double[][] nouEstalvi = new Double[registres][3];
         for (int i = 0; i < registres - 1; i++) {
             for (int j = 0; j < 6; j++) {
                 nuevaMatriz[i][j] = matriz[i][j];  // aqui copiem la informacio de la matriz anterior a la nova per operar amb aquesta sense perdre informacio
             }
+            for (int j = 0; j < 3; j++) {
+                nouEstalvi[i][j] = estalvi[i][j];
+            }
+
         }
         matriz = nuevaMatriz;
+        estalvi = nouEstalvi;
 // preguntem les dades que s'introduirant a la matriu
         System.out.print("Ingresa el teu nom: ");
         nom = input.nextLine();
@@ -207,6 +214,7 @@ public void verificarUsername(){
                     retirarDiners();
                     break;
                 case 4:
+                    planificamentDiners();
                     break;
                 case 5:
                     modificardades();
@@ -380,7 +388,87 @@ public void verificarUsername(){
 
     }
 
-    public void mostrarMenu2(){
+    public void planificamentDiners(){
 
+        int teclat =0;
+        boolean sortir =false;
+        boolean dinersEstalviar=false;
+        boolean metaFeta =false;
+        double metaEstalvi =0;
+        double tantEstalviar = 0;
+        double estalviPerMes=0.0;
+        Double [][] nouEstalvi = new Double[registres][3];
+
+
+        do{
+        teclat = llegirEnter("Les opcions del menú són:" +
+                "\n1- Establir una nova meta d'estalvi" +
+                "\n2- Pla d'estalviament" +
+                "\n3- Mostrar pla d'estalviament" +
+                "\n4- Tornar enrere", 1, 4);
+            //
+
+            switch (teclat) {
+                case 1:
+                    metaEstalvi = llegirDouble("Diners a estalviar:");
+                    estalvi[index][0]=metaEstalvi;
+                    dinersEstalviar=true;
+                    System.out.println("Has configurat una meta d'estalvi de " + metaEstalvi);
+                    break;
+                case 2:
+                    if (estalvi[index][0]==null) {
+                        System.out.println("Primer ingresa els diners que vols estalviar");
+                    } else {
+                        if (metaEstalvi < 1000) {
+                            System.out.println("La teva meta d'estalvi es de: "+ estalvi[index][0]);
+                            System.out.println("Quin tant % del teu sou vols estalviar:");
+                            estalvi[index][1]=tantEstalviar;
+                            estalviPerMes = calcularEstalviMensual(tantEstalviar);
+                            System.out.println("Estalviaràs " + estalviPerMes + " per mes");
+                            metaFeta=demanarGuardar();
+                        } else if (metaEstalvi < 5000 && metaEstalvi > 1000) {
+                            System.out.println("La teva meta d'estalvi es de: "+ estalvi[index][0]);
+
+                        } else if (metaEstalvi > 5000) {
+                            System.out.println("La teva meta d'estalvi es de: "+ estalvi[index][0]);
+
+                        }
+
+                    }
+                    break;
+                case 3:
+                    if (!metaFeta) {
+                        System.out.println("Primer necessites establir un pla d'estalviament");
+                    } else {
+                        System.out.println("------------------");
+                        System.out.println("La teva meta d'estalvi es: " + estalvi[index][0]);
+                        System.out.println("Estalviaras per mes: " + estalviPerMes);
+                        System.out.println("");
+                        System.out.println("------------------");
+                    }
+                case 4:
+                    System.out.println("Tornant enrere...");
+                    sortir = true;
+                    break;
+                    default: System.out.println("Opció no vàlida.");
+            }
+        }while(!sortir);
+    }
+    public static double calcularEstalviMensual (double tantEstalviar){
+        return (mensualidad*tantEstalviar)/100.0;
+    }
+    public boolean demanarGuardar(){
+        boolean metaFeta=false;
+        System.out.println("Vols guardar aquest pla d'estalvi? (S/N)");
+        String guardar = input.next();
+        if (guardar.equalsIgnoreCase("s")) {
+            System.out.println("Guardant....");
+            System.out.println("El teu pla d'estalvi ha estat guardat correctament");
+            metaFeta=true;
+            return true;
+        } else{
+            System.out.println("El pla d'estalvi no s'ha guardat");
+            return false;
+        }
     }
 }
