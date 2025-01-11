@@ -62,23 +62,14 @@ public class Main {
         matriz = nuevaMatriz;
         estalvi = nouEstalvi;
 // preguntem les dades que s'introduirant a la matriu
-        System.out.print("Ingresa el teu nom: ");
-        nom = input.nextLine();
-
-        System.out.print("Ingresa el teu cognom: ");
-        cognom = input.nextLine();
-
+        nom = llegirParaula("Ingresa el teu nom: ");
+        cognom = llegirParaula("Ingresa el teu cognom: ");
         // verificar que el username posat no existeix
          verificarUsername();
-
        // preguntar contraseña
          password();
-
         saldoActual = llegirDouble("Ingresa el teu  Saldo Actual: ");
-
         mensualidad = llegirDouble("Ingresa la teva  Mensualitat: ");
-
-
         //introduim les dades donades a la matriu
         matriz[registres - 1][0] = nom;
         matriz[registres - 1][1] = cognom;
@@ -115,7 +106,25 @@ public class Main {
 
             return contrasenya;
         }
+    public static String llegirParaula(String missatge) {
+        Scanner input = new Scanner(System.in);
+        boolean te_Numero = false;
+        String palabra;
+        do {
+            te_Numero = false;
+            System.out.print(missatge);
+            palabra = input.nextLine();
+            for (int i = 0; i < palabra.length(); i++) {
+                if (Character.isDigit(palabra.charAt(i))) { // Verifica si es un numero
+                    te_Numero = true;
+                    System.out.println("No pots intruduir una xifra ");
+                    break;
+                }
 
+            }
+        } while (te_Numero);
+        return palabra;
+    }
 
 public void verificarUsername(){
     boolean b;
@@ -422,15 +431,20 @@ public void verificarUsername(){
                         if (metaEstalvi < 1000) {
                             System.out.println("La teva meta d'estalvi es de: "+ estalvi[index][0]);
                             System.out.println("Quin tant % del teu sou vols estalviar:");
-                            estalvi[index][1]=tantEstalviar;
+
+                            // corregir      estalvi[index][1]=tantEstalviar;
+                            tantEstalviar=input.nextDouble();
                             estalviPerMes = calcularEstalviMensual(tantEstalviar);
-                            System.out.println("Estalviaràs " + estalviPerMes + " per mes");
+
+                            estalvi[index][1]=   estalviPerMes;
+
+                            System.out.println("Estalviaràs " + estalvi[index][1] + " per mes");
                             metaFeta=demanarGuardar();
                         } else if (metaEstalvi < 5000 && metaEstalvi > 1000) {
-                            System.out.println("La teva meta d'estalvi es de: "+ estalvi[index][0]);
+
 
                         } else if (metaEstalvi > 5000) {
-                            System.out.println("La teva meta d'estalvi es de: "+ estalvi[index][0]);
+
 
                         }
 
@@ -442,7 +456,7 @@ public void verificarUsername(){
                     } else {
                         System.out.println("------------------");
                         System.out.println("La teva meta d'estalvi es: " + estalvi[index][0]);
-                        System.out.println("Estalviaras per mes: " + estalviPerMes);
+                        System.out.println("Estalviaras per mes: " + estalvi[index][1]);
                         System.out.println("");
                         System.out.println("------------------");
                     }
@@ -454,6 +468,7 @@ public void verificarUsername(){
             }
         }while(!sortir);
     }
+
     public static double calcularEstalviMensual (double tantEstalviar){
         return (mensualidad*tantEstalviar)/100.0;
     }
