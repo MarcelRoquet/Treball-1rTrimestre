@@ -35,6 +35,7 @@ public class Main {
     public String teCompte() {
         do {                            //bucle hasta que nos de una respuesta posible
             System.out.println("Vols inicia sessió (I) o registrarte (R) o sortir (O)");
+            System.out.print("Opció: ");
             compte = input.nextLine().toUpperCase();      //leemos input y lo pasamos a maysuculas
         } while (!compte.equals("R") && !compte.equals("I") && !compte.equals("O"));
         if (compte.equals("O")){
@@ -387,6 +388,9 @@ public void verificarUsername(){
         System.out.println("Quina quanititat vols retirar? ");
         System.out.print("Diners: ");
              Diners = input.nextDouble();
+            if(Diners>saldoActual){
+                System.out.println("No pots retirar més diners del que tens");
+            }
         } while (Diners>saldoActual);
 
             saldoActual -= Diners;
@@ -430,7 +434,7 @@ public void verificarUsername(){
                     } else {
                         if (metaEstalvi < 1000) {
                             System.out.println("La teva meta d'estalvi es de: "+ estalvi[index][0]);
-                            System.out.println("Quin tant % del teu sou vols estalviar:");
+                            System.out.print("Quin tant % del teu sou vols estalviar: ");
 
                             // corregir      estalvi[index][1]=tantEstalviar;
                             tantEstalviar=input.nextDouble();
