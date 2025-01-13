@@ -247,6 +247,7 @@ public void verificarUsername(){
         System.out.print("Mensualitat: ");
         System.out.println(matriz[index][5]);
     }
+
     public void ingressarDiners(){
         System.out.println("Quina quanititat vols ingresar? ");
         System.out.print("Diners: ");
@@ -261,6 +262,7 @@ public void verificarUsername(){
 
         System.out.println("Acceptat, ara el teu saldo es de: "+matriz[index][4]);
     }
+
     public void retirarDiners(){
         System.out.println("Quina quanititat vols retirar? ");
         System.out.print("Diners: ");
@@ -277,6 +279,7 @@ public void verificarUsername(){
         System.out.println("Acceptat, ara el teu saldo es de: "+matriz[index][4]);
 
     }
+
     public void planificamentDiners(){
 
         //Inici VARIABLES
@@ -370,15 +373,28 @@ public void verificarUsername(){
 
     public void modificarDades(){
         int seleccio=0;
-        seleccio = llegirEnter("Quina dada desitja modificar?" +
-                "\n1- Nom" +
-                "\n2- Cognom" +
-                "\n3- Username" +
-                "\n4- Mensualitat" +
-                "\n5- Tanca sessió", 1, 5);
+
         do{
-            
+            seleccio = llegirEnter("Quina dada desitja modificar?" +
+                    "\n1- Nom" +
+                    "\n2- Cognom" +
+                    "\n3- Username" +
+                    "\n4- Mensualitat" +
+                    "\n5- Tanca sessió", 1, 5);
+            switch (seleccio){
+                case 1:
+                    modificarNom();
+                case 2:
+            }
         }while(seleccio!=5);
     }
+    public void modificarNom(){
+        System.out.println("------------------");
+        System.out.println("Introdueix el nou nom:");
+        String nouNom = input.next();
+        matriz[registres - 1][0] = nouNom;
+        System.out.println("------------------");
+    }
+
 }
 
