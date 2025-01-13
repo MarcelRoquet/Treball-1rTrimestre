@@ -2,7 +2,7 @@
 import java.util.Scanner;
 public class Main {
     // crear registre de comptes per saber tamany de la llista
-    int registres=0;
+    int registres = 0;
     // variables per crar el compte
     static String compte;
     static String nom, cognom, compcontrasenya, contrasenya, username;
@@ -11,21 +11,24 @@ public class Main {
     //variables per verificar el compte
     static Double[][] estalvi = new Double[0][3];
     static int index;
-    private Scanner input =new Scanner(System.in);
+    private Scanner input = new Scanner(System.in);
+
     public  static void main(String[] args) {
         Main Banc = new Main();          //creacio instancia
+
         do {
             Banc.teCompte();
+
             switch (compte){
                 case "R":
                     Banc.crearCompte();
                     break;
                  case "I":
-                    if (!Banc.verificarCredencials()){
+                    if (!Banc.verificarCredencials())
                         break;
-                    } else {
+                    else
                         Banc.mostrarMenu(" Benvingut/da "+ matriz[index][0]);
-                    }
+
                     break;
             }
         } while (!compte.equals("O"));
@@ -33,8 +36,9 @@ public class Main {
     }
     public String teCompte() {
         do {
+
             //bucle hasta que nos de una respuesta posible
-            System.out.println("Vols inicia sessió (I) o registrarte (R) o sortir (O)");
+            System.out.println("Vols iniciar sessió (I) o registrarte (R) o sortir (O)");
             System.out.print("Opció: ");
             compte = input.nextLine().toUpperCase();      //leemos input y lo pasamos a maysuculas
         } while (!compte.equals("R") && !compte.equals("I") && !compte.equals("O"));
@@ -113,9 +117,11 @@ public class Main {
     }
     public static String llegirParaula(String missatge) {
         Scanner input = new Scanner(System.in);
-        boolean teNumero = false;
+        boolean teNumero;
         String palabra;
+
         do {
+
             teNumero = false;
             System.out.print(missatge);
             palabra = input.nextLine();
@@ -129,19 +135,21 @@ public class Main {
 
             }
         } while (teNumero);
+
         return palabra;
     }
 
 public void verificarUsername(){
     boolean b;
+
     do {
-        b=true;
+        b = true;
 
         System.out.print("Ingresi un Username: ");
         username = input.nextLine();
-        for (int i = 0; i < registres-1; i++) {
+        for (int i = 0; i < registres - 1; i++) {
             if (username.equals(matriz[i][3])) {
-                System.out.println("Username no dispobible");
+                System.out.println("Username no disponible.");
                 b = false;   // si el username es repeteix convertim el booleano en falso
 
                 break;
@@ -151,12 +159,13 @@ public void verificarUsername(){
 
 }
     public boolean verificarCredencials(){
-        index=-1;  //donem valor inicial al index
+        index = -1;  //donem valor inicial al index
         System.out.print("Introdueix el teu username: ");
-        username=input.nextLine();
+        username = input.nextLine();
         System.out.print("Introdueix la contrasenya: ");
-        compcontrasenya=input.nextLine();
-//bucle per verificar el usuari i la contraseña, amb aixo es podran repetir noms d'usuari (ya no)
+        compcontrasenya = input.nextLine();
+
+        //bucle per verificar el usuari i la contraseña, amb aixo es podran repetir noms d'usuari (ya no)
         for (int i = 0; i < registres; i++) {
 
             if (username.equals(matriz[i][3])) {
@@ -200,9 +209,10 @@ public void verificarUsername(){
 
         return x;
     }
-    public  void mostrarMenu(String missatge) {
+    public void mostrarMenu(String missatge) {
         int opcioMenu = 0;
         System.out.println(missatge);
+
         do {
             opcioMenu = llegirEnter("Les opcions del menú són principal :" +
                     "\n1- Dades personals" +
@@ -242,20 +252,22 @@ public void verificarUsername(){
     }
 
     private void modificardades() {
-        int moddades = 0;
-        moddades= llegirEnter("Que vols modificar ? " +
+        int modDades = 0;
+
+        modDades= llegirEnter("Que vols modificar ? " +
                 "\n1- Nom" +
                 "\n2- Cognom" +
                 "\n3- Username " +
                 "\n4- Contrasenya  " +
                 "\n5- Mensualitat "
                     , 1, 5);
-        switch (moddades){
+
+        switch (modDades){
             case 1:
-                modString("Escriu el teu nou nom: ", 0);
+                modString("Escriu el teu nou nom: ", 0,"nom");
                 break;
             case 2:
-                modString("Escriu el teu nou cognom: ", 1);
+                modString("Escriu el teu nou cognom: ", 1, "cognom");
                 break;
             case 3:
                 modusername();
@@ -265,62 +277,64 @@ public void verificarUsername(){
                 break;
             case 5:
                 modmansualitat();
-
+                break;
         }
     }
 
-
-
     private void modmansualitat() {
-         double newmensualitat =0;
+        double newMensualitat = 0;
+
         System.out.println("La teva mensualitat asctual es : "+  matriz[index][5]);
         System.out.print("Escriu la teva nova mensualitat : ");
-        newmensualitat=input.nextDouble();
-        matriz[index][5] = String.valueOf(newmensualitat);
-        System.out.println("Dades guardades correctament, "+ matriz[index][5]);
+
+        newMensualitat = input.nextDouble();
+        matriz[index][5] = String.valueOf(newMensualitat);
+        System.out.println("Dades guardades correctament, " + matriz[index][5]);
     }
 
     private void modcontraseña() {
         String new_contraseña = null;
         String continuar = "c";
         boolean acceptada = false;
+
         // bucle hasta que ponga bien la contraseña dee comprovacion o quiera salir
         do {
-         System.out.print("Per modificar la contrasnya has de introduir-la primer: ");
-         new_contraseña=input.nextLine();
+            System.out.print("Per modificar la contrasnya has de introduir-la primer: ");
+            new_contraseña=input.nextLine();
 
-         if (!new_contraseña.equals(matriz[index][2])){
-             System.out.println("Contrasenya incorrecte");
-             System.out.print("Presiona 'f' per sortir o qualsevol tecla per continuar: ");
-              continuar = input.nextLine().toLowerCase();
-         } else {
+            if (!new_contraseña.equals(matriz[index][2])){
+                System.out.println("Contrasenya incorrecte");
+                System.out.print("Presiona 'f' per sortir o qualsevol tecla per continuar: ");
+                continuar = input.nextLine().toLowerCase();
+            } else
              acceptada = true;
-         }
         } while (!new_contraseña.equals(matriz[index][2]) && !continuar.equals("f"));
-        if (acceptada){
+
+        if (acceptada) {
             System.out.println("Contrasenya acceptada ");
             password();
             matriz[index][2]=contrasenya;
             System.out.println("Nova contrasenya desada");
         }
-
     }
 
     private void modusername() {
-        String username_actual = null;
-        System.out.println("El tenu cognom actual es: "+  matriz[index][3]);
+        String usernameActual;
+        System.out.println("El teu username actual es: "+  matriz[index][3]);
         System.out.print("Escriu el teu nou username: ");
-        username_actual=input.nextLine();
-        matriz[index][3] = username_actual;
+
+        usernameActual = input.nextLine();
+        matriz[index][3] = usernameActual;
         System.out.println("Dades guardades correctament, "+ matriz[index][3]);
     }
-    private void modString(String missatge, int index2){
-        String nouString;
-        System.out.println("El tenu nom actual es: "+  matriz[index][index2]);
-        nouString=llegirParaula(missatge);
-        matriz[index][index2] = nouString;
-        System.out.println("Dades guardades correctament");
 
+    private void modString (String missatge, int index2, String noms) {
+        String nouString;
+        System.out.println("El tenu " +noms+ " actual es: " +  matriz[index][index2]);
+
+        nouString = llegirParaula(missatge);
+        matriz[index][index2] = nouString;
+        System.out.println("Dades guardades correctament.");
     }
 
     private static int llegirEnter(String missatge, int min, int max) {
@@ -351,49 +365,48 @@ public void verificarUsername(){
     public void dadesPersonals(){
         System.out.print("Nom: ");
         System.out.println(matriz[index][0]);
+
         System.out.print("Cognom: ");
         System.out.println(matriz[index][1]);
+
         System.out.print("Username: ");
         System.out.println(matriz[index][3]);
+
         System.out.print("Saldo actual: ");
         System.out.println(matriz[index][4]);
+
         System.out.print("Mensualitat: ");
         System.out.println(matriz[index][5]);
     }
     public void ingressarDiners(){
-
-        double Diners =llegirDouble("Quina quanititat vols  ingresar ? "+"\n Diners: ");
-
+        double Diners = llegirDouble("Quina quanititat vols  ingresar ? "+"\n Diners: ");
         double saldoActual = Double.parseDouble(matriz[index][4]);
 
         saldoActual += Diners;
-
         matriz[index][4] = Double.toString(saldoActual);
 
-        System.out.println("Acceptat, ara el teu saldo es de: "+matriz[index][4]);
+        System.out.println("Acceptat, ara el teu saldo es de: " + matriz[index][4]);
     }
 
     public void retirarDiners(){
         double saldoActual = Double.parseDouble(matriz[index][4]);
-        double Diners;
+        double diners;
         do {
-             Diners = llegirDouble("Quina quanititat vols retirar? "+"\n Diners: ");
-            if(Diners>saldoActual)
+            diners = llegirDouble("Quina quanititat vols retirar? "+"\n Diners: ");
+
+            if(diners>saldoActual)
                 System.out.println("No pots retirar més diners del que tens");
 
-        } while (Diners>saldoActual);
+        } while (diners > saldoActual);
 
-            saldoActual -= Diners;
-
+        saldoActual -= diners;
         matriz[index][4] = Double.toString(saldoActual);
 
-        System.out.println("Acceptat, ara el teu saldo es de: "+matriz[index][4]);
-
+        System.out.println("Acceptat, ara el teu saldo es de: " + matriz[index][4]);
     }
 
     public void planificamentDiners(){
-
-        int teclat =0;
+        int teclat = 0;
         boolean sortir =false;
         boolean dinersEstalviar=false;
         boolean metaFeta =false;
