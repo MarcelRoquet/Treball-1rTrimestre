@@ -390,8 +390,12 @@ public void verificarUsername(){
                     break;
                 case 3:
                     modificarUsername();
+                    break;
                 case 4:
                     modificarMensualitat();
+                    break;
+                default:
+                    System.out.println("Opcio no valida");
             }
         }while(seleccio!=5);
     }
