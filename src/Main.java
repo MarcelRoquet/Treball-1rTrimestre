@@ -197,6 +197,7 @@ public void verificarUsername(){
                     planificamentDiners();
                     break;
                 case 5:
+                    modificarDades();
                     break;
                 case 6:
                     break;
@@ -344,7 +345,6 @@ public void verificarUsername(){
     public static double calcularEstalviMensual (double tantEstalviar){
         return (mensualidad*estalvi[index][1])/estalvi[index][0];
     }
-
     public boolean demanarGuardar(){
         boolean metaFeta=false;
         System.out.println("Vols guardar aquest pla d'estalvi? (S/N)");
@@ -370,4 +370,8 @@ public void verificarUsername(){
         metaFeta = demanarGuardar(); //Demana guardar el pla per el metode "demanarGuardar"
     }
 
+    public void modificarDades(){
+        
+    }
 }
+
