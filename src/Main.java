@@ -293,13 +293,14 @@ public void verificarUsername(){
         //Final VARIABLES
 
         do{
-            System.out.println("");
+            System.out.println("------------------");
             //MENU
         teclat = llegirEnter("Les opcions del menú són:" +
                 "\n1- Establir una nova meta d'estalvi" +
                 "\n2- Pla d'estalviament" +
                 "\n3- Mostrar pla d'estalviament" +
                 "\n4- Tornar enrere", 1, 4);
+            System.out.println("------------------");
 
 
             switch (teclat) {
@@ -310,7 +311,7 @@ public void verificarUsername(){
                     System.out.println("Has configurat una meta d'estalvi de " + metaEstalvi);
                     break;
                 case 2:
-                    if (estalvi[index][0]==null) {
+                    if (estalvi[index][0]==null) { //Si no has establit la meta no pots accedir al cas 2
                         System.out.println("Primer ingresa els diners que vols estalviar");
                     } else {
                         if (metaEstalvi < 1000) {
@@ -324,7 +325,7 @@ public void verificarUsername(){
                     }
                     break;
                 case 3:
-                    if (!plaFet) {
+                    if (!plaFet) { //Si no has fet el pla d'estalvi no pots accedir al cas 3
                         System.out.println("Primer necessites establir un pla d'estalviament");
                     } else {
                         System.out.println("------------------");
@@ -358,15 +359,15 @@ public void verificarUsername(){
             return false;
         }
     }
-    private void gestionarEstalvi(String missatge) {
+    private void gestionarEstalvi(String missatge) {    //Metode per gestionar el % i fer el calcul
         boolean metaFeta;
         System.out.println(missatge);
         System.out.println("La teva meta d'estalvi es de: " + estalvi[index][0]);
         System.out.println("Quin tant % del teu sou vols estalviar:");
         estalvi[index][1] = input.nextDouble();
-        estalvi[index][1] = calcularEstalviMensual(estalvi[index][0]);
+        estalvi[index][1] = calcularEstalviMensual(estalvi[index][0]); //Ens envia a calcularEstalviMensual
         System.out.println("Estalviaràs " + estalvi[index][1] + " per mes");
-        metaFeta = demanarGuardar();
+        metaFeta = demanarGuardar(); //Demana guardar el pla per el metode "demanarGuardar"
     }
 
 }
