@@ -261,7 +261,6 @@ public void verificarUsername(){
 
         System.out.println("Acceptat, ara el teu saldo es de: "+matriz[index][4]);
     }
-
     public void retirarDiners(){
         System.out.println("Quina quanititat vols retirar? ");
         System.out.print("Diners: ");
@@ -278,7 +277,6 @@ public void verificarUsername(){
         System.out.println("Acceptat, ara el teu saldo es de: "+matriz[index][4]);
 
     }
-
     public void planificamentDiners(){
 
         //Inici VARIABLES
@@ -371,7 +369,16 @@ public void verificarUsername(){
     }
 
     public void modificarDades(){
-        
+        int seleccio=0;
+        seleccio = llegirEnter("Quina dada desitja modificar?" +
+                "\n1- Nom" +
+                "\n2- Cognom" +
+                "\n3- Username" +
+                "\n4- Mensualitat" +
+                "\n5- Tanca sessió", 1, 5);
+        do{
+            
+        }while(seleccio!=5);
     }
 }
 
