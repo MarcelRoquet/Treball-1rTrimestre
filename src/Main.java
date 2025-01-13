@@ -284,6 +284,7 @@ public void verificarUsername(){
         boolean sortir =false;
         boolean dinersEstalviar=false;
         boolean metaFeta =false;
+        boolean plaFet = false;
         double metaEstalvi =0;
         double tantEstalviar = 0;
         double estalviPerMes=0.0;
@@ -335,7 +336,7 @@ public void verificarUsername(){
                     }
                     break;
                 case 3:
-                    if (!metaFeta) {
+                    if (!plaFet) {
                         System.out.println("Primer necessites establir un pla d'estalviament");
                     } else {
                         System.out.println("------------------");
