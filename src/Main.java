@@ -292,6 +292,7 @@ public void verificarUsername(){
 
 
         do{
+            System.out.println("");
         teclat = llegirEnter("Les opcions del menú són:" +
                 "\n1- Establir una nova meta d'estalvi" +
                 "\n2- Pla d'estalviament" +
@@ -332,7 +333,7 @@ public void verificarUsername(){
                             System.out.println("Estalviaràs " + estalviPerMes + " per mes");
                             metaFeta=demanarGuardar();
                         }
-
+                        plaFet=true;
                     }
                     break;
                 case 3:
@@ -353,8 +354,9 @@ public void verificarUsername(){
         }while(!sortir);
     }
     public static double calcularEstalviMensual (double tantEstalviar){
-        return (mensualidad*tantEstalviar)/100.0;
+        return (mensualidad*estalvi[index][1])/estalvi[index][0];
     }
+
     public boolean demanarGuardar(){
         boolean metaFeta=false;
         System.out.println("Vols guardar aquest pla d'estalvi? (S/N)");
