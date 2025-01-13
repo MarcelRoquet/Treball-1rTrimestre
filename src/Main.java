@@ -414,8 +414,23 @@ public void verificarUsername(){
         }
     }
     public void modificarCognom(){
-        System.out.println("Perro");
+        System.out.println("------------------");
+        System.out.println("Cognom actual: " + matriz[registres - 1][1]);
+        System.out.println("Introdueix el nou cognom:");
+        String nouCognom = input.next();
+        matriz[registres - 1][1] = nouCognom;
+        System.out.println("------------------");
+        System.out.println("Confirma el teu nou cognom:");
+        String confirmaCognom = input.next();
+        if (confirmaCognom.equals(nouCognom)){
+            System.out.println("Cognom cambiat correctament a: "+ nouCognom);
+            System.out.println("------------------");
+        } else {
+            System.out.println("El cognom no coincideix");
+            System.out.println("Redirigint al menu...");
+            return;
+        }
+        }
     }
 
-}
 
