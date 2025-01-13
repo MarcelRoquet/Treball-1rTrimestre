@@ -380,7 +380,7 @@ public void verificarUsername(){
                     "\n2- Cognom" +
                     "\n3- Username" +
                     "\n4- Mensualitat" +
-                    "\n5- Tanca sessió", 1, 5);
+                    "\n5- Tornar Enrere", 1, 5);
             switch (seleccio){
                 case 1:
                     modificarNom();
@@ -390,6 +390,8 @@ public void verificarUsername(){
                     break;
                 case 3:
                     modificarUsername();
+                case 4:
+                    modificarMensualitat();
             }
         }while(seleccio!=5);
     }
@@ -453,6 +455,17 @@ public void verificarUsername(){
             System.out.println("Redirigint al menu...");
         }
     }
+    public void modificarMensualitat(){
+        System.out.println("------------------");
+        System.out.println("Mensualitat actual: " + matriz[registres - 1][5]);
+        System.out.println("Introdueix la nova Mensualitat:");
+        String novaMensualitat = input.next();
+        matriz[registres - 1][5]=novaMensualitat;
+        System.out.println("Mensualitat cambiada correctament");
+        System.out.println("------------------");
+
+    }
+
 }
 
 
