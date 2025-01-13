@@ -384,18 +384,23 @@ public void verificarUsername(){
             switch (seleccio){
                 case 1:
                     modificarNom();
+                    break;
                 case 2:
+                    modificarCognom();
+                    break;
+                case 3:
+                    modificarUsername();
             }
         }while(seleccio!=5);
     }
     public void modificarNom(){
         System.out.println("------------------");
         System.out.println("Nom actual: " + matriz[registres - 1][0]);
-        System.out.println("Introdueix el nou nom:");
+        System.out.println("Introdueix el nou Nom:");
         String nouNom = input.next();
         matriz[registres - 1][0] = nouNom;
         System.out.println("------------------");
-        System.out.println("Confirma el teu nou nom:");
+        System.out.println("Confirma el teu nou Nom:");
         String confirmaNom = input.next();
         if (confirmaNom.equals(nouNom)){
             System.out.println("Nom cambiat correctament a: "+ nouNom);
@@ -416,11 +421,11 @@ public void verificarUsername(){
     public void modificarCognom(){
         System.out.println("------------------");
         System.out.println("Cognom actual: " + matriz[registres - 1][1]);
-        System.out.println("Introdueix el nou cognom:");
+        System.out.println("Introdueix el nou Cognom:");
         String nouCognom = input.next();
         matriz[registres - 1][1] = nouCognom;
         System.out.println("------------------");
-        System.out.println("Confirma el teu nou cognom:");
+        System.out.println("Confirma el teu nou Cognom:");
         String confirmaCognom = input.next();
         if (confirmaCognom.equals(nouCognom)){
             System.out.println("Cognom cambiat correctament a: "+ nouCognom);
@@ -430,7 +435,24 @@ public void verificarUsername(){
             System.out.println("Redirigint al menu...");
             return;
         }
+    }
+    public void modificarUsername(){
+        System.out.println("------------------");
+        System.out.println("Username actual: " + matriz[registres - 1][3]);
+        System.out.println("Introdueix el nou Username:");
+        String nouUsername = input.next();
+        matriz[registres - 1][3] = nouUsername;
+        System.out.println("------------------");
+        System.out.println("Confirma el teu nou Username:");
+        String confirmaUsername = input.next();
+        if (confirmaUsername.equals(nouUsername)){
+            System.out.println("Username cambiat correctament a: "+ nouUsername);
+            System.out.println("------------------");
+        } else {
+            System.out.println("El nou username no coincideix");
+            System.out.println("Redirigint al menu...");
         }
     }
+}
 
 
