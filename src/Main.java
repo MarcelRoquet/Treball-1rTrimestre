@@ -280,6 +280,7 @@ public void verificarUsername(){
 
     public void planificamentDiners(){
 
+        //Inici VARIABLES
         int teclat =0;
         boolean sortir =false;
         boolean dinersEstalviar=false;
@@ -289,21 +290,22 @@ public void verificarUsername(){
         double tantEstalviar = 0;
         double estalviPerMes=0.0;
         Double [][] nouEstalvi = new Double[registres][3];
-
+        //Final VARIABLES
 
         do{
             System.out.println("");
+            //MENU
         teclat = llegirEnter("Les opcions del menú són:" +
                 "\n1- Establir una nova meta d'estalvi" +
                 "\n2- Pla d'estalviament" +
                 "\n3- Mostrar pla d'estalviament" +
                 "\n4- Tornar enrere", 1, 4);
-            //
+
 
             switch (teclat) {
                 case 1:
                     metaEstalvi = llegirDouble("Diners a estalviar:");
-                    estalvi[index][0]=metaEstalvi;
+                    estalvi[index][0]=metaEstalvi;  //Llegir la variable i guardarla a la matriu estalvi/registres
                     dinersEstalviar=true;
                     System.out.println("Has configurat una meta d'estalvi de " + metaEstalvi);
                     break;
@@ -312,26 +314,11 @@ public void verificarUsername(){
                         System.out.println("Primer ingresa els diners que vols estalviar");
                     } else {
                         if (metaEstalvi < 1000) {
-                            System.out.println("La teva meta d'estalvi es de: "+ estalvi[index][0]);
-                            System.out.println("Quin tant % del teu sou vols estalviar:");
-                            estalvi[index][1]=input.nextDouble();
-                            estalviPerMes = calcularEstalviMensual(tantEstalviar);
-                            System.out.println("Estalviaràs " + estalviPerMes + " per mes");
-                            metaFeta=demanarGuardar();
+                            gestionarEstalvi("És una meta modesta.");
                         } else if (metaEstalvi < 5000 && metaEstalvi > 1000) {
-                            System.out.println("La teva meta d'estalvi es de: "+ estalvi[index][0]);
-                            System.out.println("Quin tant % del teu sou vols estalviar:");
-                            estalvi[index][1]=input.nextDouble();
-                            estalviPerMes = calcularEstalviMensual(tantEstalviar);
-                            System.out.println("Estalviaràs " + estalviPerMes + " per mes");
-                            metaFeta=demanarGuardar();
+                            gestionarEstalvi("És una meta ambiciosa.");
                         } else if (metaEstalvi > 5000) {
-                            System.out.println("La teva meta d'estalvi es de: "+ estalvi[index][0]);
-                            System.out.println("Quin tant % del teu sou vols estalviar:");
-                            estalvi[index][1]=input.nextDouble();
-                            estalviPerMes = calcularEstalviMensual(tantEstalviar);
-                            System.out.println("Estalviaràs " + estalviPerMes + " per mes");
-                            metaFeta=demanarGuardar();
+                            gestionarEstalvi("És una meta gran!");
                         }
                         plaFet=true;
                     }
@@ -342,7 +329,7 @@ public void verificarUsername(){
                     } else {
                         System.out.println("------------------");
                         System.out.println("La teva meta d'estalvi es: " + estalvi[index][0]);
-                        System.out.println("Estalviaras per mes: " + estalviPerMes);
+                        System.out.println("Estalviaras per mes: " + estalvi[index][1]);
                         System.out.println("------------------");
                     }
                 case 4:
@@ -371,4 +358,15 @@ public void verificarUsername(){
             return false;
         }
     }
+    private void gestionarEstalvi(String missatge) {
+        boolean metaFeta;
+        System.out.println(missatge);
+        System.out.println("La teva meta d'estalvi es de: " + estalvi[index][0]);
+        System.out.println("Quin tant % del teu sou vols estalviar:");
+        estalvi[index][1] = input.nextDouble();
+        estalvi[index][1] = calcularEstalviMensual(estalvi[index][0]);
+        System.out.println("Estalviaràs " + estalvi[index][1] + " per mes");
+        metaFeta = demanarGuardar();
+    }
+
 }
