@@ -361,10 +361,8 @@ public void verificarUsername(){
         System.out.println(matriz[index][5]);
     }
     public void ingressarDiners(){
-        System.out.println("Quina quanititat vols ingresar? ");
-        System.out.print("Diners: ");
 
-        double Diners = input.nextDouble();
+        double Diners =llegirDouble("Quina quanititat vols  ingresar ? "+"\n Diners: ");
 
         double saldoActual = Double.parseDouble(matriz[index][4]);
 
@@ -379,12 +377,10 @@ public void verificarUsername(){
         double saldoActual = Double.parseDouble(matriz[index][4]);
         double Diners;
         do {
-        System.out.println("Quina quanititat vols retirar? ");
-        System.out.print("Diners: ");
-             Diners = input.nextDouble();
-            if(Diners>saldoActual){
+             Diners = llegirDouble("Quina quanititat vols retirar? "+"\n Diners: ");
+            if(Diners>saldoActual)
                 System.out.println("No pots retirar més diners del que tens");
-            }
+
         } while (Diners>saldoActual);
 
             saldoActual -= Diners;
