@@ -24,8 +24,7 @@ public class Main {
                     if (!Banc.verificarCredencials()){
                         break;
                     } else {
-                        Banc.mostrarBenvinguda();
-                        Banc.mostrarMenu();
+                        Banc.mostrarMenu(" Benvingut/da "+ matriz[index][0]);
                     }
                     break;
             }
@@ -33,14 +32,16 @@ public class Main {
 
     }
     public String teCompte() {
-        do {                            //bucle hasta que nos de una respuesta posible
+        do {
+            //bucle hasta que nos de una respuesta posible
             System.out.println("Vols inicia sessió (I) o registrarte (R) o sortir (O)");
             System.out.print("Opció: ");
             compte = input.nextLine().toUpperCase();      //leemos input y lo pasamos a maysuculas
         } while (!compte.equals("R") && !compte.equals("I") && !compte.equals("O"));
-        if (compte.equals("O")){
+
+        if (compte.equals("O"))
             System.out.println("Sortint...");
-        }
+
         return compte;
     }
 
@@ -49,26 +50,28 @@ public class Main {
 
         registres++;  //augmntem els registres per fer que la matriu s'agrandi cada cop que algui es registri
 
-        String[][] nuevaMatriz = new String[registres][6];   // creem una segona matriu que sera una fila mes gran a la anterior per registrar una persona mes
+        String[][] nuevaMatriz = new String[registres][6];// creem una segona matriu que sera una fila mes gran a la anterior per registrar una persona mes
         Double[][] nouEstalvi = new Double[registres][3];
+
         for (int i = 0; i < registres - 1; i++) {
-            for (int j = 0; j < 6; j++) {
-                nuevaMatriz[i][j] = matriz[i][j];  // aqui copiem la informacio de la matriz anterior a la nova per operar amb aquesta sense perdre informacio
-            }
-            for (int j = 0; j < 3; j++) {
-                nouEstalvi[i][j] = estalvi[i][j];
-            }
+            // aqui copiem la informacio de la matriz anterior a la nova per operar amb aquesta sense perdre informacio
+            System.arraycopy(matriz[i], 0, nuevaMatriz[i], 0, 6);
+
+            System.arraycopy(estalvi[i], 0, nouEstalvi[i], 0, 3);
 
         }
+
         matriz = nuevaMatriz;
         estalvi = nouEstalvi;
-// preguntem les dades que s'introduirant a la matriu
+
+        // preguntem les dades que s'introduirant a la matriu
         nom = llegirParaula("Ingresa el teu nom: ");
         cognom = llegirParaula("Ingresa el teu cognom: ");
+
         // verificar que el username posat no existeix
-         verificarUsername();
-       // preguntar contraseña
-         password();
+        verificarUsername();
+        // preguntar contraseña
+        password();
         saldoActual = llegirDouble("Ingresa el teu  Saldo Actual: ");
         mensualidad = llegirDouble("Ingresa la teva  Mensualitat: ");
         //introduim les dades donades a la matriu
@@ -87,43 +90,45 @@ public class Main {
             do {
                 System.out.print("Ingresa una contrasenya: ");
                 contrasenya = input.nextLine();
-                if (contrasenya.length() <= 3) {
-                    System.out.println("La contrasenya ha de tenir minim 3 xifres");
-                }
-                if (!contrasenya.matches(".*[A-Z].*")) {
+                if (contrasenya.length() <= 5)
+                    System.out.println("La contrasenya ha de tenir minim 5 caràcters");
+
+                if (!contrasenya.matches(".*[A-Z].*"))
                         System.out.println("La contrasenya ha de tenir almenys una majúscula");
-                    }
-                if (!contrasenya.matches(".*[a-z].*")) {
+
+                if (!contrasenya.matches(".*[a-z].*"))
                         System.out.println("La contrasenya ha de tenir almenys una minuscula");
-                    }
-            } while (contrasenya.length() <= 3 || !contrasenya.matches(".*[A-Z].*") || !contrasenya.matches(".*[a-z].*") ) ;
 
-                System.out.print("Verifica  la contrasnya: ");
-                compcontrasenya = input.nextLine();
-                if (!contrasenya.equals(compcontrasenya)) {
-                    System.out.println("Les contrasenyes no coincideixen");
-                }
-            } while (!contrasenya.equals(compcontrasenya)); // Verifica que l'usuari ha ficat la contrasenya que volia i no s'ha equivocat en una lletra o numero
+            } while (contrasenya.length() <= 5 || !contrasenya.matches(".*[A-Z].*") || !contrasenya.matches(".*[a-z].*") ) ;
 
-            return contrasenya;
-        }
+            System.out.print("Verifica  la contrasnya: ");
+            compcontrasenya = input.nextLine();
+
+            if (!contrasenya.equals(compcontrasenya))
+                System.out.println("Les contrasenyes no coincideixen");
+
+        } while (!contrasenya.equals(compcontrasenya)); // Verifica que l'usuari ha ficat la contrasenya que volia i no s'ha equivocat en una lletra o numero
+
+        return contrasenya;
+    }
     public static String llegirParaula(String missatge) {
         Scanner input = new Scanner(System.in);
-        boolean te_Numero = false;
+        boolean teNumero = false;
         String palabra;
         do {
-            te_Numero = false;
+            teNumero = false;
             System.out.print(missatge);
             palabra = input.nextLine();
+
             for (int i = 0; i < palabra.length(); i++) {
                 if (Character.isDigit(palabra.charAt(i))) { // Verifica si es un numero
-                    te_Numero = true;
+                    teNumero = true;
                     System.out.println("No pots intruduir una xifra ");
                     break;
                 }
 
             }
-        } while (te_Numero);
+        } while (teNumero);
         return palabra;
     }
 
@@ -195,14 +200,9 @@ public void verificarUsername(){
 
         return x;
     }
-
-    public void mostrarBenvinguda(){
-        System.out.println(" Benvingut/da "+ matriz[index][0]);
-    }
-
-    public  void mostrarMenu() {
+    public  void mostrarMenu(String missatge) {
         int opcioMenu = 0;
-
+        System.out.println(missatge);
         do {
             opcioMenu = llegirEnter("Les opcions del menú són principal :" +
                     "\n1- Dades personals" +
@@ -237,6 +237,8 @@ public void verificarUsername(){
             }
 
         } while (opcioMenu != 6);
+
+
     }
 
     private void modificardades() {
@@ -250,10 +252,10 @@ public void verificarUsername(){
                     , 1, 5);
         switch (moddades){
             case 1:
-                modnom();
+                modString("Escriu el teu nou nom: ", 0);
                 break;
             case 2:
-                modcognom();
+                modString("Escriu el teu nou cognom: ", 1);
                 break;
             case 3:
                 modusername();
@@ -266,6 +268,8 @@ public void verificarUsername(){
 
         }
     }
+
+
 
     private void modmansualitat() {
          double newmensualitat =0;
@@ -310,23 +314,13 @@ public void verificarUsername(){
         matriz[index][3] = username_actual;
         System.out.println("Dades guardades correctament, "+ matriz[index][3]);
     }
+    private void modString(String missatge, int index2){
+        String nouString;
+        System.out.println("El tenu nom actual es: "+  matriz[index][index2]);
+        nouString=llegirParaula(missatge);
+        matriz[index][index2] = nouString;
+        System.out.println("Dades guardades correctament");
 
-    private void modcognom() {
-        String cognom_actual = null;
-        System.out.println("El tenu cognom actual es: "+  matriz[index][1]);
-        System.out.print("Escriu el teu nou cognom: ");
-        cognom_actual=input.nextLine();
-        matriz[index][1] = cognom_actual;
-        System.out.println("Dades guardades correctament, "+ matriz[index][0]);
-    }
-
-    private void modnom() {
-        String nom_actual = null;
-        System.out.println("El tenu nom actual es: "+  matriz[index][0]);
-        System.out.print("Escriu el teu nou nom: ");
-        nom_actual=input.nextLine();
-        matriz[index][0] = nom_actual;
-        System.out.println("Dades guardades correctament, "+ matriz[index][0]);
     }
 
     private static int llegirEnter(String missatge, int min, int max) {
