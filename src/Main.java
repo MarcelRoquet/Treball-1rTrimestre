@@ -390,6 +390,7 @@ public void verificarUsername(){
     }
     public void modificarNom(){
         System.out.println("------------------");
+        System.out.println("Nom actual: " + matriz[registres - 1][0]);
         System.out.println("Introdueix el nou nom:");
         String nouNom = input.next();
         matriz[registres - 1][0] = nouNom;
@@ -397,12 +398,23 @@ public void verificarUsername(){
         System.out.println("Confirma el teu nou nom:");
         String confirmaNom = input.next();
         if (confirmaNom.equals(nouNom)){
-            System.out.println("Nom cambiat correctament...");
+            System.out.println("Nom cambiat correctament a: "+ nouNom);
+            System.out.println("------------------");
         } else {
             System.out.println("El nom no coincideix");
             System.out.println("Redirigint al menu...");
             return;
         }
+        System.out.println("Desitja cambiar tambe el seu cognom? (S/N)");
+        String anaraCognom = input.next();
+        if (anaraCognom.equalsIgnoreCase("s")) {
+            modificarCognom();
+        } else{
+            System.out.println("Redirigint al menu...");
+        }
+    }
+    public void modificarCognom(){
+        System.out.println("Perro");
     }
 
 }
