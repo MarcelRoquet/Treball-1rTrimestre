@@ -394,6 +394,15 @@ public void verificarUsername(){
         String nouNom = input.next();
         matriz[registres - 1][0] = nouNom;
         System.out.println("------------------");
+        System.out.println("Confirma el teu nou nom:");
+        String confirmaNom = input.next();
+        if (confirmaNom.equals(nouNom)){
+            System.out.println("Nom cambiat correctament...");
+        } else {
+            System.out.println("El nom no coincideix");
+            System.out.println("Redirigint al menu...");
+            return;
+        }
     }
 
 }
