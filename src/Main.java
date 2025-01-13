@@ -304,7 +304,6 @@ public void verificarUsername(){
                     estalvi[index][0]=metaEstalvi;
                     dinersEstalviar=true;
                     System.out.println("Has configurat una meta d'estalvi de " + metaEstalvi);
-                    System.out.println(estalvi[index][0]);
                     break;
                 case 2:
                     if (estalvi[index][0]==null) {
@@ -313,16 +312,24 @@ public void verificarUsername(){
                         if (metaEstalvi < 1000) {
                             System.out.println("La teva meta d'estalvi es de: "+ estalvi[index][0]);
                             System.out.println("Quin tant % del teu sou vols estalviar:");
-                            estalvi[index][1]=tantEstalviar;
+                            estalvi[index][1]=input.nextDouble();
                             estalviPerMes = calcularEstalviMensual(tantEstalviar);
                             System.out.println("Estalviaràs " + estalviPerMes + " per mes");
                             metaFeta=demanarGuardar();
                         } else if (metaEstalvi < 5000 && metaEstalvi > 1000) {
                             System.out.println("La teva meta d'estalvi es de: "+ estalvi[index][0]);
-
+                            System.out.println("Quin tant % del teu sou vols estalviar:");
+                            estalvi[index][1]=input.nextDouble();
+                            estalviPerMes = calcularEstalviMensual(tantEstalviar);
+                            System.out.println("Estalviaràs " + estalviPerMes + " per mes");
+                            metaFeta=demanarGuardar();
                         } else if (metaEstalvi > 5000) {
                             System.out.println("La teva meta d'estalvi es de: "+ estalvi[index][0]);
-
+                            System.out.println("Quin tant % del teu sou vols estalviar:");
+                            estalvi[index][1]=input.nextDouble();
+                            estalviPerMes = calcularEstalviMensual(tantEstalviar);
+                            System.out.println("Estalviaràs " + estalviPerMes + " per mes");
+                            metaFeta=demanarGuardar();
                         }
 
                     }
@@ -334,7 +341,6 @@ public void verificarUsername(){
                         System.out.println("------------------");
                         System.out.println("La teva meta d'estalvi es: " + estalvi[index][0]);
                         System.out.println("Estalviaras per mes: " + estalviPerMes);
-                        System.out.println("");
                         System.out.println("------------------");
                     }
                 case 4:
