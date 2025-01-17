@@ -197,7 +197,7 @@ public void verificarUsername(){
                     planificamentDiners();
                     break;
                 case 5:
-                    modificarDades();
+
                     break;
                 case 6:
                     break;
@@ -370,106 +370,6 @@ public void verificarUsername(){
         System.out.println("Estalviaràs " + estalvi[index][1] + " per mes");
         metaFeta = demanarGuardar(); //Demana guardar el pla per el metode "demanarGuardar"
     }
-
-    public void modificarDades(){
-        int seleccio=0;
-
-        do{
-            seleccio = llegirEnter("Quina dada desitja modificar?" +
-                    "\n1- Nom" +
-                    "\n2- Cognom" +
-                    "\n3- Username" +
-                    "\n4- Mensualitat" +
-                    "\n5- Tornar Enrere", 1, 5);
-            switch (seleccio){
-                case 1:
-                    modificarNom();
-                    break;
-                case 2:
-                    modificarCognom();
-                    break;
-                case 3:
-                    modificarUsername();
-                    break;
-                case 4:
-                    modificarMensualitat();
-                    break;
-                default:
-                    System.out.println("Opcio no valida");
-            }
-        }while(seleccio!=5);
-    }
-    public void modificarNom(){
-        System.out.println("------------------");
-        System.out.println("Nom actual: " + matriz[registres - 1][0]);
-        System.out.println("Introdueix el nou Nom:");
-        String nouNom = input.next();
-        matriz[registres - 1][0] = nouNom;
-        System.out.println("------------------");
-        System.out.println("Confirma el teu nou Nom:");
-        String confirmaNom = input.next();
-        if (confirmaNom.equals(nouNom)){
-            System.out.println("Nom cambiat correctament a: "+ nouNom);
-            System.out.println("------------------");
-        } else {
-            System.out.println("El nom no coincideix");
-            System.out.println("Redirigint al menu...");
-            return;
-        }
-        System.out.println("Desitja cambiar tambe el seu cognom? (S/N)");
-        String anaraCognom = input.next();
-        if (anaraCognom.equalsIgnoreCase("s")) {
-            modificarCognom();
-        } else{
-            System.out.println("Redirigint al menu...");
-        }
-    }
-    public void modificarCognom(){
-        System.out.println("------------------");
-        System.out.println("Cognom actual: " + matriz[registres - 1][1]);
-        System.out.println("Introdueix el nou Cognom:");
-        String nouCognom = input.next();
-        matriz[registres - 1][1] = nouCognom;
-        System.out.println("------------------");
-        System.out.println("Confirma el teu nou Cognom:");
-        String confirmaCognom = input.next();
-        if (confirmaCognom.equals(nouCognom)){
-            System.out.println("Cognom cambiat correctament a: "+ nouCognom);
-            System.out.println("------------------");
-        } else {
-            System.out.println("El cognom no coincideix");
-            System.out.println("Redirigint al menu...");
-            return;
-        }
-    }
-    public void modificarUsername(){
-        System.out.println("------------------");
-        System.out.println("Username actual: " + matriz[registres - 1][3]);
-        System.out.println("Introdueix el nou Username:");
-        String nouUsername = input.next();
-        matriz[registres - 1][3] = nouUsername;
-        System.out.println("------------------");
-        System.out.println("Confirma el teu nou Username:");
-        String confirmaUsername = input.next();
-        if (confirmaUsername.equals(nouUsername)){
-            System.out.println("Username cambiat correctament a: "+ nouUsername);
-            System.out.println("------------------");
-        } else {
-            System.out.println("El nou username no coincideix");
-            System.out.println("Redirigint al menu...");
-        }
-    }
-    public void modificarMensualitat(){
-        System.out.println("------------------");
-        System.out.println("Mensualitat actual: " + matriz[registres - 1][5]);
-        System.out.println("Introdueix la nova Mensualitat:");
-        String novaMensualitat = input.next();
-        matriz[registres - 1][5]=novaMensualitat;
-        System.out.println("Mensualitat cambiada correctament");
-        System.out.println("------------------");
-
-    }
-
 }
 
 
