@@ -398,76 +398,71 @@ public void verificarUsername(){
         System.out.println("Acceptat, ara el teu saldo es de: " + matriz[index][4]);
     }
 
-    public void planificamentDiners(){
+    public void planificamentDiners() {
+
+        //Inici VARIABLES
         int teclat = 0;
-        boolean sortir =false;
-        boolean dinersEstalviar=false;
-        boolean metaFeta =false;
-        double metaEstalvi =0;
+        boolean sortir = false;
+        boolean dinersEstalviar = false;
+        boolean metaFeta = false;
+        boolean plaFet = false;
+        double metaEstalvi = 0;
         double tantEstalviar = 0;
-        double estalviPerMes=0.0;
-        Double [][] nouEstalvi = new Double[registres][3];
+        double estalviPerMes = 0.0;
+        Double[][] nouEstalvi = new Double[registres][3];
+        //Final VARIABLES
 
+        do {
+            System.out.println("------------------");
+            //MENU
+            teclat = llegirEnter("Les opcions del menú són:" +
+                    "\n1- Establir una nova meta d'estalvi" +
+                    "\n2- Pla d'estalviament" +
+                    "\n3- Mostrar pla d'estalviament" +
+                    "\n4- Tornar enrere", 1, 4);
+            System.out.println("------------------");
 
-        do{
-        teclat = llegirEnter("Les opcions del menú són:" +
-                "\n1- Establir una nova meta d'estalvi" +
-                "\n2- Pla d'estalviament" +
-                "\n3- Mostrar pla d'estalviament" +
-                "\n4- Tornar enrere", 1, 4);
-            //
 
             switch (teclat) {
                 case 1:
                     metaEstalvi = llegirDouble("Diners a estalviar:");
-                    estalvi[index][0]=metaEstalvi;
-                    dinersEstalviar=true;
+                    estalvi[index][0] = metaEstalvi;  //Llegir la variable i guardarla a la matriu estalvi/registres
+                    dinersEstalviar = true;
                     System.out.println("Has configurat una meta d'estalvi de " + metaEstalvi);
                     break;
                 case 2:
-                    if (estalvi[index][0]==null) {
+                    if (estalvi[index][0] == null) { //Si no has establit la meta no pots accedir al cas 2
                         System.out.println("Primer ingresa els diners que vols estalviar");
                     } else {
                         if (metaEstalvi < 1000) {
-                            System.out.println("La teva meta d'estalvi es de: "+ estalvi[index][0]);
-                            System.out.print("Quin tant % del teu sou vols estalviar: ");
-
-                            // corregir      estalvi[index][1]=tantEstalviar;
-                            tantEstalviar=input.nextDouble();
-                            estalviPerMes = calcularEstalviMensual(tantEstalviar);
-
-                            estalvi[index][1]=   estalviPerMes;
-
-                            System.out.println("Estalviaràs " + estalvi[index][1] + " per mes");
-                            metaFeta=demanarGuardar();
+                            gestionarEstalvi("És una meta modesta.");
                         } else if (metaEstalvi < 5000 && metaEstalvi > 1000) {
-
-
+                            gestionarEstalvi("És una meta ambiciosa.");
                         } else if (metaEstalvi > 5000) {
-
-
+                            gestionarEstalvi("És una meta gran!");
                         }
-
+                        plaFet = true;
                     }
                     break;
                 case 3:
-                    if (!metaFeta) {
+                    if (!plaFet) { //Si no has fet el pla d'estalvi no pots accedir al cas 3
                         System.out.println("Primer necessites establir un pla d'estalviament");
                     } else {
                         System.out.println("------------------");
                         System.out.println("La teva meta d'estalvi es: " + estalvi[index][0]);
                         System.out.println("Estalviaras per mes: " + estalvi[index][1]);
-                        System.out.println("");
                         System.out.println("------------------");
                     }
                 case 4:
                     System.out.println("Tornant enrere...");
                     sortir = true;
                     break;
-                    default: System.out.println("Opció no vàlida.");
+                default:
+                    System.out.println("Opció no vàlida.");
             }
-        }while(!sortir);
+        } while (!sortir);
     }
+
 
     public static double calcularEstalviMensual (double tantEstalviar){
         return (mensualidad*tantEstalviar)/100.0;
