@@ -360,6 +360,7 @@ public void verificarUsername(){
         System.out.print("Mensualitat: ");
         System.out.println(matriz[index][5]);
     }
+
     public void ingressarDiners(){
         System.out.println("Quina quanititat vols ingresar? ");
         System.out.print("Diners: ");
@@ -397,65 +398,64 @@ public void verificarUsername(){
 
     public void planificamentDiners(){
 
+        //Inici VARIABLES
         int teclat =0;
         boolean sortir =false;
         boolean dinersEstalviar=false;
         boolean metaFeta =false;
+        boolean plaFet = false;
         double metaEstalvi =0;
         double tantEstalviar = 0;
         double estalviPerMes=0.0;
         Double [][] nouEstalvi = new Double[registres][3];
-
+        //Final VARIABLES
 
         do{
+            System.out.println("------------------");
+            //MENU
         teclat = llegirEnter("Les opcions del menú són:" +
                 "\n1- Establir una nova meta d'estalvi" +
                 "\n2- Pla d'estalviament" +
                 "\n3- Mostrar pla d'estalviament" +
                 "\n4- Tornar enrere", 1, 4);
-            //
+            System.out.println("------------------");
+
 
             switch (teclat) {
                 case 1:
                     metaEstalvi = llegirDouble("Diners a estalviar:");
-                    estalvi[index][0]=metaEstalvi;
+                    estalvi[index][0]=metaEstalvi;  //Llegir la variable i guardarla a la matriu estalvi/registres
                     dinersEstalviar=true;
                     System.out.println("Has configurat una meta d'estalvi de " + metaEstalvi);
                     break;
                 case 2:
-                    if (estalvi[index][0]==null) {
+                    if (estalvi[index][0]==null) { //Si no has establit la meta no pots accedir al cas 2
                         System.out.println("Primer ingresa els diners que vols estalviar");
                     } else {
                         if (metaEstalvi < 1000) {
-                            System.out.println("La teva meta d'estalvi es de: "+ estalvi[index][0]);
-                            System.out.print("Quin tant % del teu sou vols estalviar: ");
 
-                            // corregir      estalvi[index][1]=tantEstalviar;
-                            tantEstalviar=input.nextDouble();
-                            estalviPerMes = calcularEstalviMensual(tantEstalviar);
-
-                            estalvi[index][1]=   estalviPerMes;
-
-                            System.out.println("Estalviaràs " + estalvi[index][1] + " per mes");
-                            metaFeta=demanarGuardar();
+                            gestionarEstalvi("És una meta modesta.");
                         } else if (metaEstalvi < 5000 && metaEstalvi > 1000) {
-
-
+                            gestionarEstalvi("És una meta ambiciosa.");
                         } else if (metaEstalvi > 5000) {
+                            gestionarEstalvi("És una meta gran!");
 
 
                         }
-
+                        plaFet=true;
                     }
                     break;
                 case 3:
-                    if (!metaFeta) {
+                    if (!plaFet) { //Si no has fet el pla d'estalvi no pots accedir al cas 3
                         System.out.println("Primer necessites establir un pla d'estalviament");
                     } else {
                         System.out.println("------------------");
                         System.out.println("La teva meta d'estalvi es: " + estalvi[index][0]);
                         System.out.println("Estalviaras per mes: " + estalvi[index][1]);
+
+
                         System.out.println("");
+
                         System.out.println("------------------");
                     }
                 case 4:
@@ -468,7 +468,7 @@ public void verificarUsername(){
     }
 
     public static double calcularEstalviMensual (double tantEstalviar){
-        return (mensualidad*tantEstalviar)/100.0;
+        return (mensualidad*estalvi[index][1])/estalvi[index][0];
     }
     public boolean demanarGuardar(){
         boolean metaFeta=false;
@@ -484,4 +484,115 @@ public void verificarUsername(){
             return false;
         }
     }
+    private void gestionarEstalvi(String missatge) {    //Metode per gestionar el % i fer el calcul
+        boolean metaFeta;
+        System.out.println(missatge);
+        System.out.println("La teva meta d'estalvi es de: " + estalvi[index][0]);
+        System.out.println("Quin tant % del teu sou vols estalviar:");
+        estalvi[index][1] = input.nextDouble();
+        estalvi[index][1] = calcularEstalviMensual(estalvi[index][0]); //Ens envia a calcularEstalviMensual
+        System.out.println("Estalviaràs " + estalvi[index][1] + " per mes");
+        metaFeta = demanarGuardar(); //Demana guardar el pla per el metode "demanarGuardar"
+    }
+
+    public void modificarDades(){
+        int seleccio=0;
+
+        do{
+            seleccio = llegirEnter("Quina dada desitja modificar?" +
+                    "\n1- Nom" +
+                    "\n2- Cognom" +
+                    "\n3- Username" +
+                    "\n4- Mensualitat" +
+                    "\n5- Tornar Enrere", 1, 5);
+            switch (seleccio){
+                case 1:
+                    modificarNom();
+                    break;
+                case 2:
+                    modificarCognom();
+                    break;
+                case 3:
+                    modificarUsername();
+                    break;
+                case 4:
+                    modificarMensualitat();
+                    break;
+                default:
+                    System.out.println("Opcio no valida");
+            }
+        }while(seleccio!=5);
+    }
+    public void modificarNom(){
+        System.out.println("------------------");
+        System.out.println("Nom actual: " + matriz[registres - 1][0]);
+        System.out.println("Introdueix el nou Nom:");
+        String nouNom = input.next();
+        matriz[registres - 1][0] = nouNom;
+        System.out.println("------------------");
+        System.out.println("Confirma el teu nou Nom:");
+        String confirmaNom = input.next();
+        if (confirmaNom.equals(nouNom)){
+            System.out.println("Nom cambiat correctament a: "+ nouNom);
+            System.out.println("------------------");
+        } else {
+            System.out.println("El nom no coincideix");
+            System.out.println("Redirigint al menu...");
+            return;
+        }
+        System.out.println("Desitja cambiar tambe el seu cognom? (S/N)");
+        String anaraCognom = input.next();
+        if (anaraCognom.equalsIgnoreCase("s")) {
+            modificarCognom();
+        } else{
+            System.out.println("Redirigint al menu...");
+        }
+    }
+    public void modificarCognom(){
+        System.out.println("------------------");
+        System.out.println("Cognom actual: " + matriz[registres - 1][1]);
+        System.out.println("Introdueix el nou Cognom:");
+        String nouCognom = input.next();
+        matriz[registres - 1][1] = nouCognom;
+        System.out.println("------------------");
+        System.out.println("Confirma el teu nou Cognom:");
+        String confirmaCognom = input.next();
+        if (confirmaCognom.equals(nouCognom)){
+            System.out.println("Cognom cambiat correctament a: "+ nouCognom);
+            System.out.println("------------------");
+        } else {
+            System.out.println("El cognom no coincideix");
+            System.out.println("Redirigint al menu...");
+            return;
+        }
+    }
+    public void modificarUsername(){
+        System.out.println("------------------");
+        System.out.println("Username actual: " + matriz[registres - 1][3]);
+        System.out.println("Introdueix el nou Username:");
+        String nouUsername = input.next();
+        matriz[registres - 1][3] = nouUsername;
+        System.out.println("------------------");
+        System.out.println("Confirma el teu nou Username:");
+        String confirmaUsername = input.next();
+        if (confirmaUsername.equals(nouUsername)){
+            System.out.println("Username cambiat correctament a: "+ nouUsername);
+            System.out.println("------------------");
+        } else {
+            System.out.println("El nou username no coincideix");
+            System.out.println("Redirigint al menu...");
+        }
+    }
+    public void modificarMensualitat(){
+        System.out.println("------------------");
+        System.out.println("Mensualitat actual: " + matriz[registres - 1][5]);
+        System.out.println("Introdueix la nova Mensualitat:");
+        String novaMensualitat = input.next();
+        matriz[registres - 1][5]=novaMensualitat;
+        System.out.println("Mensualitat cambiada correctament");
+        System.out.println("------------------");
+
+    }
 }
+
+
