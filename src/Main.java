@@ -450,7 +450,7 @@ public void verificarUsername(){
                     } else {
                         System.out.println("------------------");
                         System.out.println("La teva meta d'estalvi es: " + estalvi[index][0]);
-                        System.out.println("Estalviaras per mes: " + estalvi[index][1]);
+                        System.out.println("Estalviaras per mes: " + estalvi[index][2]);
                         System.out.println("------------------");
                     }
                 case 4:
@@ -464,8 +464,9 @@ public void verificarUsername(){
     }
 
 
-    public static double calcularEstalviMensual (double tantEstalviar){
-        return (mensualidad*tantEstalviar)/100.0;
+    public static double calcularEstalviMensual (double metaEstalviar){
+        double local = Double.parseDouble(matriz[index][5]);
+        return (local * metaEstalviar)/100.0;
     }
     public boolean demanarGuardar(){
         boolean metaFeta=false;
@@ -487,8 +488,8 @@ public void verificarUsername(){
         System.out.println("La teva meta d'estalvi es de: " + estalvi[index][0]);
         System.out.println("Quin tant % del teu sou vols estalviar:");
         estalvi[index][1] = input.nextDouble();
-        estalvi[index][1] = calcularEstalviMensual(estalvi[index][0]); //Ens envia a calcularEstalviMensual
-        System.out.println("Estalviaràs " + estalvi[index][1] + " per mes");
+        estalvi[index][2] = calcularEstalviMensual(estalvi[index][1]); //Ens envia a calcularEstalviMensual
+        System.out.println("Estalviaràs " + estalvi[index][2] + " per mes");
         metaFeta = demanarGuardar(); //Demana guardar el pla per el metode "demanarGuardar"
     }
 }
