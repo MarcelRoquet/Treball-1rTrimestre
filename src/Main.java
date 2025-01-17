@@ -1,4 +1,3 @@
-
 import java.util.Scanner;
 public class Main {
     // crear registre de comptes per saber tamany de la llista
@@ -11,7 +10,7 @@ public class Main {
     //variables per verificar el compte
     static Double[][] estalvi = new Double[0][3];
     static int index;
-    private Scanner input = new Scanner(System.in);
+    static Scanner input = new Scanner(System.in);
 
     public  static void main(String[] args) {
         Main Banc = new Main();          //creacio instancia
@@ -121,7 +120,6 @@ public class Main {
         String palabra;
 
         do {
-
             teNumero = false;
             System.out.print(missatge);
             palabra = input.nextLine();
@@ -132,7 +130,6 @@ public class Main {
                     System.out.println("No pots intruduir una xifra ");
                     break;
                 }
-
             }
         } while (teNumero);
 
@@ -169,7 +166,6 @@ public void verificarUsername(){
         for (int i = 0; i < registres; i++) {
 
             if (username.equals(matriz[i][3])) {
-
                 if (compcontrasenya.equals(matriz[i][2])) {
                     index = i;  // si coincideix la contraseña amb el username de la mateixa fila li dodem un valor al index
                     break;
@@ -183,26 +179,23 @@ public void verificarUsername(){
         } else {
             System.out.println("Usuari o contrasenya incorrectes.");
             return false;
-
         }
-
     }
     public static double llegirDouble(String missatge) {
-        Scanner llegir = new Scanner(System.in);
 
         double x = 0;
         boolean valorCorrecte = false;
 
         do {
             System.out.print(missatge);
-            valorCorrecte = llegir.hasNextDouble();
+            valorCorrecte = input.hasNextDouble();
 
             if (!valorCorrecte) {
                 System.out.println("ERROR: Valor incoherent.");
-                llegir.nextLine();
+                input.nextLine();
             } else {
-                x = llegir.nextDouble();
-                llegir.nextLine();
+                x = input.nextDouble();
+                input.nextLine();
             }
 
         } while (!valorCorrecte);
@@ -293,22 +286,22 @@ public void verificarUsername(){
     }
 
     private void modcontraseña() {
-        String new_contraseña = null;
+        String newPassword;
         String continuar = "c";
         boolean acceptada = false;
 
         // bucle hasta que ponga bien la contraseña dee comprovacion o quiera salir
         do {
             System.out.print("Per modificar la contrasnya has de introduir-la primer: ");
-            new_contraseña=input.nextLine();
+            newPassword = input.nextLine();
 
-            if (!new_contraseña.equals(matriz[index][2])){
+            if (!newPassword.equals(matriz[index][2])){
                 System.out.println("Contrasenya incorrecte");
                 System.out.print("Presiona 'f' per sortir o qualsevol tecla per continuar: ");
                 continuar = input.nextLine().toLowerCase();
             } else
              acceptada = true;
-        } while (!new_contraseña.equals(matriz[index][2]) && !continuar.equals("f"));
+        } while (!newPassword.equals(matriz[index][2]) && !continuar.equals("f"));
 
         if (acceptada) {
             System.out.println("Contrasenya acceptada ");
