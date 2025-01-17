@@ -481,4 +481,15 @@ public void verificarUsername(){
             return false;
         }
     }
+    private void gestionarEstalvi(String missatge) {    //Metode per gestionar el % i fer el calcul
+        boolean metaFeta;
+        System.out.println(missatge);
+        System.out.println("La teva meta d'estalvi es de: " + estalvi[index][0]);
+        System.out.println("Quin tant % del teu sou vols estalviar:");
+        estalvi[index][1] = input.nextDouble();
+        estalvi[index][1] = calcularEstalviMensual(estalvi[index][0]); //Ens envia a calcularEstalviMensual
+        System.out.println("Estalviaràs " + estalvi[index][1] + " per mes");
+        metaFeta = demanarGuardar(); //Demana guardar el pla per el metode "demanarGuardar"
+    }
 }
+
