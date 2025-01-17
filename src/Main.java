@@ -469,7 +469,6 @@ public void verificarUsername(){
         System.out.println("------------------");
 
     }
-
 }
 
 
