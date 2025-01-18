@@ -3,14 +3,18 @@ public class Main {
     // crear registre de comptes per saber tamany de la llista
     int registres = 0;
     // variables per crar el compte
+
     static String compte;
     static String nom, cognom, compcontrasenya, contrasenya, username;
     static double saldoActual, mensualidad;
     static  String [][] matriz = new String[0][6]; // creem una matriu  aqui per que quedin totes les dades guardades
     //variables per verificar el compte
-    static Double[][] estalvi = new Double[0][3];
+    static Double[][] estalvi = new Double[0][4];
     static int index;
+
+    static int calculMesos;
     static Scanner input = new Scanner(System.in);
+
 
     public  static void main(String[] args) {
         Main Banc = new Main();          //creacio instancia
@@ -54,13 +58,13 @@ public class Main {
         registres++;  //augmntem els registres per fer que la matriu s'agrandi cada cop que algui es registri
 
         String[][] nuevaMatriz = new String[registres][6];// creem una segona matriu que sera una fila mes gran a la anterior per registrar una persona mes
-        Double[][] nouEstalvi = new Double[registres][3];
+        Double[][] nouEstalvi = new Double[registres][4];
 
         for (int i = 0; i < registres - 1; i++) {
             // aqui copiem la informacio de la matriz anterior a la nova per operar amb aquesta sense perdre informacio
             System.arraycopy(matriz[i], 0, nuevaMatriz[i], 0, 6);
 
-            System.arraycopy(estalvi[i], 0, nouEstalvi[i], 0, 3);
+            System.arraycopy(estalvi[i], 0, nouEstalvi[i], 0, 4);
 
         }
 
@@ -409,7 +413,11 @@ public void verificarUsername(){
         double metaEstalvi = 0;
         double tantEstalviar = 0;
         double estalviPerMes = 0.0;
-        Double[][] nouEstalvi = new Double[registres][3];
+        Double[][] nouEstalvi = new Double[registres][4];
+        // el 0 serà diners que vol estalviar
+        // eñ 1 serà el percentatge del sou que volem estalviar
+        // em el 2 el que estalviaras al mes
+        //  en el 3 el percentatge del saldo que vol invertir
         //Final VARIABLES
 
         do {
@@ -451,6 +459,7 @@ public void verificarUsername(){
                         System.out.println("------------------");
                         System.out.println("La teva meta d'estalvi es: " + estalvi[index][0]);
                         System.out.println("Estalviaras per mes: " + estalvi[index][2]);
+                        System.out.println("Llavors en "+ calculMesos + " mesos ho tindràs");
                         System.out.println("------------------");
                     }
                 case 4:
@@ -463,10 +472,29 @@ public void verificarUsername(){
         } while (!sortir);
     }
 
+    public  void setCalculMesos (){
+        double estañvi_real = estalvi[index][0] - estalvi[index][3];
+        if (estalvi[index][2] > 0) {
+            calculMesos = (int) Math.ceil( estañvi_real/ estalvi[index][2]); // matceli arredondeix cap a dalt
+        } else {
+            System.out.println("No es pot calcular els mesos perquè l'estalvi mensual és 0.");
+            calculMesos = 0;
+        }
 
-    public static double calcularEstalviMensual (double metaEstalviar){
-        double local = Double.parseDouble(matriz[index][5]);
-        return (local * metaEstalviar)/100.0;
+    }
+
+    public static double calcularEstalviMensual (){   // diners que estalvia al mes
+        double mensualitat = Double.parseDouble(matriz[index][5]);
+
+        double percentatgeEstalvi = estalvi[index][1] / 100.0;
+
+        // Si el porcentarge no es correcte no fer res
+        if (percentatgeEstalvi <= 0 || percentatgeEstalvi > 1) {
+            System.out.println("Percentatge d'estalvi no vàlid.");
+            return 0;
+        }
+
+        return mensualitat * percentatgeEstalvi;
     }
     public boolean demanarGuardar(){
         boolean metaFeta=false;
@@ -486,11 +514,27 @@ public void verificarUsername(){
         boolean metaFeta;
         System.out.println(missatge);
         System.out.println("La teva meta d'estalvi es de: " + estalvi[index][0]);
+
         System.out.println("Quin tant % del teu sou vols estalviar:");
         estalvi[index][1] = input.nextDouble();
-        estalvi[index][2] = calcularEstalviMensual(estalvi[index][1]); //Ens envia a calcularEstalviMensual
+
+        System.out.print("A més el teu saldo es de: " + matriz[index][4]);
+        System.out.println(". Quin % penses utilitzar abans de començar a estalviar ?");
+        double pergentatge = input.nextDouble();
+        double double_ = Double.parseDouble(matriz[index][4]);
+        estalvi[index][3]= pergentatge/100 * double_ ; // diners que se li restaran a la meta ja que es el que es vol invertir
+
+        estalvi[index][2] = calcularEstalviMensual();
         System.out.println("Estalviaràs " + estalvi[index][2] + " per mes");
-        metaFeta = demanarGuardar(); //Demana guardar el pla per el metode "demanarGuardar"
+
+
+        setCalculMesos();
+        System.out.println("Amb aquest pla, aconseguiràs la teva meta en " + calculMesos + " mesos");
+
+        // Pedir guardar
+         metaFeta = demanarGuardar();
     }
+
+
 }
 
