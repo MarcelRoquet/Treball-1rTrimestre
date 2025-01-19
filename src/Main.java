@@ -4,7 +4,7 @@ public class Main {
     // crear registre de comptes per saber tamany de la llista
     int registres = 0;
     // variables per crar el compte
-
+    int benvingudes= 0;
     static String compte;
     static String nom, cognom, compcontrasenya, contrasenya, username;
     static double saldoActual, mensualidad;
@@ -26,7 +26,6 @@ public class Main {
         Main Banc = new Main();          //creacio instancia
 
         do {
-            Banc.Benvinguda();
             Banc.teCompte();
 
             switch (compte){
@@ -45,18 +44,22 @@ public class Main {
 
     }
 
-    private void Benvinguda() {
-        System.out.println(" ____                      _                       _            _        _      __      __        ____                 _    \n" +
-                " |  _ \\                    (_)                     | |          | |      | |   /\\\\ \\    / //\\     |  _ \\               | |   \n" +
-                " | |_) |  ___  _ __ __   __ _  _ __    __ _  _   _ | |_    __ _ | |      | |  /  \\\\ \\  / //  \\    | |_) |  __ _  _ __  | | __\n" +
-                " |  _ <  / _ \\| '_ \\\\ \\ / /| || '_ \\  / _` || | | || __|  / _` || |  _   | | / /\\ \\\\ \\/ // /\\ \\   |  _ <  / _` || '_ \\ | |/ /\n" +
-                " | |_) ||  __/| | | |\\ V / | || | | || (_| || |_| || |_  | (_| || | | |__| |/ ____ \\\\  // ____ \\  | |_) || (_| || | | ||   < \n" +
-                " |____/  \\___||_| |_| \\_/  |_||_| |_| \\__, | \\__,_| \\__|  \\__,_||_|  \\____//_/    \\_\\\\//_/    \\_\\ |____/  \\__,_||_| |_||_|\\_\\\n" +
-                "                                       __/ |                                                                                 \n" +
-                "                                      |___/                                                                                  ");
-    }
 
-    public String teCompte() {
+
+    public void teCompte() {
+
+        while (benvingudes==0){
+            System.out.println(" ____                      _                       _            _        _      __      __        ____                 _    \n" +
+                    " |  _ \\                    (_)                     | |          | |      | |   /\\\\ \\    / //\\     |  _ \\               | |   \n" +
+                    " | |_) |  ___  _ __ __   __ _  _ __    __ _  _   _ | |_    __ _ | |      | |  /  \\\\ \\  / //  \\    | |_) |  __ _  _ __  | | __\n" +
+                    " |  _ <  / _ \\| '_ \\\\ \\ / /| || '_ \\  / _` || | | || __|  / _` || |  _   | | / /\\ \\\\ \\/ // /\\ \\   |  _ <  / _` || '_ \\ | |/ /\n" +
+                    " | |_) ||  __/| | | |\\ V / | || | | || (_| || |_| || |_  | (_| || | | |__| |/ ____ \\\\  // ____ \\  | |_) || (_| || | | ||   < \n" +
+                    " |____/  \\___||_| |_| \\_/  |_||_| |_| \\__, | \\__,_| \\__|  \\__,_||_|  \\____//_/    \\_\\\\//_/    \\_\\ |____/  \\__,_||_| |_||_|\\_\\\n" +
+                    "                                       __/ |                                                                                 \n" +
+                    "                                      |___/                                                                                  ");
+
+            benvingudes++;
+        }
         do {
 
             //bucle hasta que nos de una respuesta posible
@@ -68,7 +71,6 @@ public class Main {
         if (compte.equals("O"))
             System.out.println("Sortint...");
 
-        return compte;
     }
 
     public void crearCompte() {
