@@ -351,6 +351,7 @@ public class Main {
 
             if (!newPassword.equals(matriz[index][2])){
                 System.out.println("Contrasenya incorrecte");
+
                 System.out.print("Presiona 'f' per sortir o qualsevol tecla per continuar: ");
                 continuar = input.nextLine().toLowerCase();
             } else
