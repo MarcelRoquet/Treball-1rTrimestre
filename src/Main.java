@@ -32,7 +32,7 @@ public class Main {
                 case "R":
                     Banc.crearCompte();
                     break;
-                 case "I":
+                case "I":
                     if (!Banc.verificarCredencials())
                         break;
                     else
@@ -109,10 +109,10 @@ public class Main {
                     System.out.println("La contrasenya ha de tenir minim 5 caràcters");
 
                 if (!contrasenya.matches(".*[A-Z].*"))
-                        System.out.println("La contrasenya ha de tenir almenys una majúscula");
+                    System.out.println("La contrasenya ha de tenir almenys una majúscula");
 
                 if (!contrasenya.matches(".*[a-z].*"))
-                        System.out.println("La contrasenya ha de tenir almenys una minuscula");
+                    System.out.println("La contrasenya ha de tenir almenys una minuscula");
 
             } while (contrasenya.length() <= 5 || !contrasenya.matches(".*[A-Z].*") || !contrasenya.matches(".*[a-z].*") ) ;
 
@@ -148,25 +148,25 @@ public class Main {
         return palabra;
     }
 
-public void verificarUsername(){
-    boolean b;
+    public void verificarUsername(){
+        boolean b;
 
-    do {
-        b = true;
+        do {
+            b = true;
 
-        System.out.print("Ingresi un Username: ");
-        username = input.nextLine();
-        for (int i = 0; i < registres - 1; i++) {
-            if (username.equals(matriz[i][3])) {
-                System.out.println("Username no disponible.");
-                b = false;   // si el username es repeteix convertim el booleano en falso
+            System.out.print("Ingresi un Username: ");
+            username = input.nextLine();
+            for (int i = 0; i < registres - 1; i++) {
+                if (username.equals(matriz[i][3])) {
+                    System.out.println("Username no disponible.");
+                    b = false;   // si el username es repeteix convertim el booleano en falso
 
-                break;
+                    break;
+                }
             }
-        }
-    } while (!b);
+        } while (!b);
 
-}
+    }
     public boolean verificarCredencials(){
         index = -1;  //donem valor inicial al index
         System.out.print("Introdueix el teu username: ");
@@ -254,7 +254,7 @@ public void verificarUsername(){
                     break;
                 case 7:
                     System.out.println("Sortint...");
-                   break;
+                    break;
                 default:
                     System.out.println("Opció no valida ");
                     break;
@@ -264,7 +264,7 @@ public void verificarUsername(){
 
 
     }
-// mostra el historial de moviments enumerat
+    // mostra el historial de moviments enumerat
     public void historialTrnsac() {
         System.out.println("------------------");
         System.out.println("Historial de transaccions:");
@@ -285,12 +285,12 @@ public void verificarUsername(){
         int modDades = 0;
         System.out.println("------------------");
         modDades= llegirEnter("Que vols modificar ? " +
-                "\n1- Nom" +
-                "\n2- Cognom" +
-                "\n3- Username " +
-                "\n4- Contrasenya  " +
-                "\n5- Mensualitat "
-                    , 1, 5);
+                        "\n1- Nom" +
+                        "\n2- Cognom" +
+                        "\n3- Username " +
+                        "\n4- Contrasenya  " +
+                        "\n5- Mensualitat "
+                , 1, 5);
 
         switch (modDades){
             case 1:
@@ -337,7 +337,7 @@ public void verificarUsername(){
                 System.out.print("Presiona 'f' per sortir o qualsevol tecla per continuar: ");
                 continuar = input.nextLine().toLowerCase();
             } else
-             acceptada = true;
+                acceptada = true;
         } while (!newPassword.equals(matriz[index][2]) && !continuar.equals("f"));
 
         if (acceptada) {
@@ -419,7 +419,7 @@ public void verificarUsername(){
         matriz[index][4] = Double.toString(saldoActual);
 
         // Registrar la transaccio
-       // historialTransacciones.add("Ingressat: " + diners + " € | Nou saldo: " + saldoActual + " €");
+        // historialTransacciones.add("Ingressat: " + diners + " € | Nou saldo: " + saldoActual + " €");
 
         // Registrar la transacción en el historial del usuario actual
         historialTransaccionsPerUsuari.get(index).add("Ingressat: " + diners + " € | Nou saldo: " + saldoActual + " €");
@@ -444,7 +444,7 @@ public void verificarUsername(){
         matriz[index][4] = Double.toString(saldoActual);
 
         // Registrar la transaccio
-       // historialTransacciones.add("Retirat: " + diners + " € | Nou saldo: " + saldoActual + " €");
+        // historialTransacciones.add("Retirat: " + diners + " € | Nou saldo: " + saldoActual + " €");
 
         // Registrar la transacción en el historial del usuario actual
         historialTransaccionsPerUsuari.get(index).add("Retirat: " + diners + " € | Nou saldo: " + saldoActual + " €");
@@ -584,7 +584,7 @@ public void verificarUsername(){
         System.out.println("Amb aquest pla, aconseguiràs la teva meta en " + calculMesos + " mesos");
 
         // Pedir guardar
-         metaFeta = demanarGuardar();
+        metaFeta = demanarGuardar();
     }
 
 
