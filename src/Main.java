@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 public class Main {
     // crear registre de comptes per saber tamany de la llista
@@ -11,6 +12,11 @@ public class Main {
     //variables per verificar el compte
     static Double[][] estalvi = new Double[0][4];
     static int index;
+
+    // static ArrayList<String> historialTransacciones = new ArrayList<>(); --> no
+
+    // arraylist dins d un array list per guardar historial de cada usuari
+    static ArrayList<ArrayList<String>> historialTransaccionsPerUsuari = new ArrayList<>();
 
     static int calculMesos;
     static Scanner input = new Scanner(System.in);
@@ -88,6 +94,8 @@ public class Main {
         matriz[registres - 1][3] = username;
         matriz[registres - 1][4] = Double.toString(saldoActual); //serveix per psar els doubles a strings
         matriz[registres - 1][5] = Double.toString(mensualidad);
+
+        historialTransaccionsPerUsuari.add(new ArrayList<>());  // Iniciar  un historial de transacciones vacío per cada usuari
 
         System.out.println("Dades guardades correctament");
     }
@@ -223,8 +231,7 @@ public void verificarUsername(){
                     "\n3- Retirar diners" +
                     "\n4- Planificació " +
                     "\n5- Modificar dades personals" +
-                    "\n6- Tanca sessió", 1, 6);
-
+                    "\n6- Historial de Transaccions" + "\n7- Sortir", 1, 7);
 
             switch (opcioMenu) {
                 case 1:
@@ -243,15 +250,35 @@ public void verificarUsername(){
                     modificardades();
                     break;
                 case 6:
+                    historialTrnsac();
                     break;
+                case 7:
+                    System.out.println("Sortint...");
+                   break;
                 default:
                     System.out.println("Opció no valida ");
                     break;
             }
 
-        } while (opcioMenu != 6);
+        } while (opcioMenu != 7);
 
 
+    }
+// mostra el historial de moviments enumerat
+    public void historialTrnsac() {
+        System.out.println("------------------");
+        System.out.println("Historial de transaccions:");
+
+// agafa el historial del index del usuari
+        ArrayList<String> historialUsuario = historialTransaccionsPerUsuari.get(index);
+
+        if (historialUsuario.isEmpty()) {
+            System.out.println("No hi ha transaccions registrades.");
+        } else {
+            for (int i = 0; i < historialUsuario.size(); i++) {  // printar la llista de forma enumerada
+                System.out.println((i + 1) + ". " + historialUsuario.get(i));
+            }
+        }
     }
 
     private void modificardades() {
@@ -385,11 +412,18 @@ public void verificarUsername(){
     }
     public void ingressarDiners(){
         System.out.println("------------------");
-        double Diners = llegirDouble("Quina quanititat vols  ingresar ? "+"\n Diners: ");
+        double diners = llegirDouble("Quina quanititat vols  ingresar ? "+"\n Diners: ");
         double saldoActual = Double.parseDouble(matriz[index][4]);
 
-        saldoActual += Diners;
+        saldoActual += diners;
         matriz[index][4] = Double.toString(saldoActual);
+
+        // Registrar la transaccio
+       // historialTransacciones.add("Ingressat: " + diners + " € | Nou saldo: " + saldoActual + " €");
+
+        // Registrar la transacción en el historial del usuario actual
+        historialTransaccionsPerUsuari.get(index).add("Ingressat: " + diners + " € | Nou saldo: " + saldoActual + " €");
+
 
         System.out.println("Acceptat, ara el teu saldo es de: " + matriz[index][4]);
     }
@@ -408,6 +442,13 @@ public void verificarUsername(){
 
         saldoActual -= diners;
         matriz[index][4] = Double.toString(saldoActual);
+
+        // Registrar la transaccio
+       // historialTransacciones.add("Retirat: " + diners + " € | Nou saldo: " + saldoActual + " €");
+
+        // Registrar la transacción en el historial del usuario actual
+        historialTransaccionsPerUsuari.get(index).add("Retirat: " + diners + " € | Nou saldo: " + saldoActual + " €");
+
 
         System.out.println("Acceptat, ara el teu saldo es de: " + matriz[index][4]);
     }
@@ -471,6 +512,7 @@ public void verificarUsername(){
                         System.out.println("Estalviaras per mes: " + estalvi[index][2]);
                         System.out.println("Llavors en "+ calculMesos + " mesos ho tindràs");
                         System.out.println("------------------");
+                        break;
                     }
                 case 4:
                     System.out.println("Tornant enrere...");
