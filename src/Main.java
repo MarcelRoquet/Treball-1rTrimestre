@@ -11,11 +11,13 @@ public class Main {
     static  String [][] matriz = new String[0][6]; // creem una matriu  aqui per que quedin totes les dades guardades
     //variables per verificar el compte
     static Double[][] estalvi = new Double[0][4];
+
+    //variable mes impornant que servira per identificar l'usuari
     static int index;
 
     // static ArrayList<String> historialTransacciones = new ArrayList<>(); --> no
 
-    // arraylist dins d un array list per guardar historial de cada usuari
+    // arraylist dins amb  array lists dins  per guardar historial de cada usuari
     static ArrayList<ArrayList<String>> historialTransaccionsPerUsuari = new ArrayList<>();
 
     static int calculMesos;
@@ -582,12 +584,12 @@ public class Main {
         System.out.println(missatge);
         System.out.println("La teva meta d'estalvi es de: " + estalvi[index][0]);
 
-        System.out.print("Quin tant % del teu sou vols estalviar:");
-        estalvi[index][1] = input.nextDouble();
 
-        System.out.print("A més el teu saldo es de: " + matriz[index][4]);
-        System.out.println(". Quin % penses utilitzar abans de començar a estalviar ?");
-        double pergentatge = input.nextDouble();
+        estalvi[index][1] = doubleDel1Al100("Quin tant % del teu sou vols estalviar:");
+
+        System.out.println("A més el teu saldo es de: " + matriz[index][4]);
+
+        double pergentatge = doubleDel1Al100("Quin % penses utilitzar abans de començar a estalviar ?: ");
         double double_ = Double.parseDouble(matriz[index][4]);
         estalvi[index][3]= pergentatge/100 * double_ ; // diners que se li restaran a la meta ja que es el que es vol invertir
 
@@ -596,10 +598,26 @@ public class Main {
 
 
         setCalculMesos();
+
         System.out.println("Amb aquest pla, aconseguiràs la teva meta en " + calculMesos + " mesos");
 
         // Pedir guardar
         metaFeta = demanarGuardar();
+    }
+
+    private Double doubleDel1Al100(String missatge) {
+        double percentatge;
+        do {
+            System.out.print(missatge);
+            percentatge=input.nextDouble();
+
+                if (percentatge>100 || percentatge<1)
+                    System.out.println("Percentatge no vàlid");
+
+        } while (percentatge>100 || percentatge<1);
+
+        return percentatge;
+
     }
 
 
