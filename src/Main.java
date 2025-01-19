@@ -176,7 +176,7 @@ public void verificarUsername(){
                 }
             }
         }
-
+        System.out.println("------------------");
         if (index != -1) {  //segons el index trobat trobem una solucio
             System.out.println("Usuari i contrasenya acceptades ");
             return true;
@@ -203,6 +203,11 @@ public void verificarUsername(){
             }
 
         } while (!valorCorrecte);
+        // si pone un numero negativo lo paso a positivo, en todo el programa no necesitamos negativos
+        if (x<0){
+            x*=-1;
+
+        }
 
         return x;
     }
@@ -211,6 +216,7 @@ public void verificarUsername(){
         System.out.println(missatge);
 
         do {
+            System.out.println("------------------");
             opcioMenu = llegirEnter("Les opcions del menú són principal :" +
                     "\n1- Dades personals" +
                     "\n2- Ingresar diners" +
@@ -250,7 +256,7 @@ public void verificarUsername(){
 
     private void modificardades() {
         int modDades = 0;
-
+        System.out.println("------------------");
         modDades= llegirEnter("Que vols modificar ? " +
                 "\n1- Nom" +
                 "\n2- Cognom" +
@@ -360,6 +366,8 @@ public void verificarUsername(){
     }
 
     public void dadesPersonals(){
+        System.out.println("------------------");
+
         System.out.print("Nom: ");
         System.out.println(matriz[index][0]);
 
@@ -376,6 +384,7 @@ public void verificarUsername(){
         System.out.println(matriz[index][5]);
     }
     public void ingressarDiners(){
+        System.out.println("------------------");
         double Diners = llegirDouble("Quina quanititat vols  ingresar ? "+"\n Diners: ");
         double saldoActual = Double.parseDouble(matriz[index][4]);
 
@@ -386,6 +395,7 @@ public void verificarUsername(){
     }
 
     public void retirarDiners(){
+        System.out.println("------------------");
         double saldoActual = Double.parseDouble(matriz[index][4]);
         double diners;
         do {
@@ -515,7 +525,7 @@ public void verificarUsername(){
         System.out.println(missatge);
         System.out.println("La teva meta d'estalvi es de: " + estalvi[index][0]);
 
-        System.out.println("Quin tant % del teu sou vols estalviar:");
+        System.out.print("Quin tant % del teu sou vols estalviar:");
         estalvi[index][1] = input.nextDouble();
 
         System.out.print("A més el teu saldo es de: " + matriz[index][4]);
